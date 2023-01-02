@@ -36,15 +36,17 @@ Plug 'junegunn/fzf'
 Plug 'ap/vim-css-color'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'airblade/vim-gitgutter'
+Plug 'davidhalter/jedi-vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim', {'name':'dracula'}
 call plug#end()
 
 "--- THEMES ---"
-colorscheme spacecamp
-let g:airline_theme = 'deep_space'
+colorscheme dracula
+let g:airline_theme = 'dracula'
 hi Normal ctermbg=None
-hi LineNr ctermbg=None
-hi NonText ctermbg=None
+"hi LineNr ctermbg=None
+"hi NonText ctermbg=None
 
 "--- SETTINGS ---"
 let g:coc_disable_startup_warning = 1
@@ -85,7 +87,7 @@ autocmd VimEnter *.ppvt setl window=32
 " command! <func name> <func body>
 
 " JUMPER
-inoremap <Space><Space> <Esc>/<CR>4xs
+"inoremap <Space><Space> <Esc>/<CR>4xs
 
 
 " - - - N O O B - - - "
@@ -114,7 +116,6 @@ autocmd FileType html noremap == <ESC>:w<CR>:!clear && google-chrome %&<CR>
 
 
 "--- FAVUNI ---"
-
 inoremap =-=   ≡
 inoremap ->>   →
 inoremap tickk ✓
