@@ -1,14 +1,3 @@
-#  _               _              
-# | |__   __ _ ___| |__  _ __ ___ 
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__ 
-# |_.__/ \__,_|___/_| |_|_|  \___|
-#                                 
-
-# office
-alias ppsmii='PYTHONPATH=$HOME/.local/office/lolly/FiledMessenger && cd $HOME/.local/office/lolly/FiledMessenger && . ../.venv/bin/activate'
-alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__'
-
 # git branch
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -55,9 +44,3 @@ function parse_git_dirty {
 		echo ""
 	fi
 }
-
-#PS1="\[\e[1;30m\][\[\e[1;36m\]\u\[\e[1;32m\]@\[\e[1;31m\]\h\[\e[1;33m\] \w\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]"
-#PS1="\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]"
-#PS1="\[\e[1;32m\]→ \[\e[1;36m\]\W \[\e[1;35m\]\`parse_git_branch\` \[\e[00m\]"
-PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]"
-
