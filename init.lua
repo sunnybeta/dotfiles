@@ -51,7 +51,7 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- Appearance
 vim.o.termguicolors = true
--- vim.cmd [[ hi Normal guibg=none ]]
+-- vim.cmd [[ hi Normal ctermbg 282A36 ]]
 -- vim.cmd [[ hi Line guibg=none ]]
 
 -- Lazy
