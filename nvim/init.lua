@@ -4,57 +4,47 @@
 -- | | | |  __/ (_) \ V /| | | | | | |
 -- |_| |_|\___|\___/ \_/ |_|_| |_| |_|
 --                                    
---
 
--- Leader
+vim.cmd('autocmd!')
 vim.g.mapleader = '\\'
 vim.g.maplocalleader = '\\'
-
--- vim.cmd('autocmd!')
-
-vim.scriptencoding = 'utf-8'
-vim.opt.encoding = 'utf-8'
-vim.opt.fileencoding = 'utf-8'
-
-vim.wo.number = true
-vim.wo.relativenumber = true
-
-vim.opt.title = true
-vim.opt.autoindent = true
-vim.opt.hlsearch = false
-vim.opt.listchars = { eol = '¬', tab = '▶-' }
-vim.opt.list = true
-
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-
-vim.o.clipboard = 'unnamedplus'
-
 vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
-vim.o.ignorecase = false
+vim.o.clipboard = 'unnamedplus'
+vim.o.completeopt = 'menuone,noselect'
+vim.o.ignorecase = true
+vim.o.shiftwidth = 4
 vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'no'
-
--- Decrease update time
-vim.o.updatetime = 250
+vim.o.tabstop = 4
+vim.opt.smarttab = true
+vim.opt.ai = true
+vim.opt.si = true
+vim.opt.breakindent = true
+vim.o.termguicolors = true
 vim.o.timeout = true
 vim.o.timeoutlen = 300
+vim.o.undofile = true
+vim.o.updatetime = 250
+vim.opt.autoindent = true
+vim.opt.cmdheight = 1
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
+vim.opt.hlsearch = false
+vim.opt.laststatus = 2
+vim.opt.list = true
+vim.opt.listchars = { eol = '¬', tab = '▶-' }
+vim.opt.scrolloff = 10
+vim.opt.shell = 'bash'
+vim.opt.showcmd = true
+vim.opt.title = true
+vim.scriptencoding = 'utf-8'
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.signcolumn = 'no'
+vim.wo.wrap = false
+vim.opt.backspace = 'start,eol,indent'
+vim.opt.path:append { '**' }
+vim.opt.wildignore:append { '*/node_modules/*', '*/__pycache__/*' }
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- Appearance
-vim.o.termguicolors = true
--- vim.cmd [[ hi Normal ctermbg 282A36 ]]
--- vim.cmd [[ hi Line guibg=none ]]
-
--- Lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -62,32 +52,18 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-
-  -- Tree
   -- 'nvim-tree/nvim-tree',
-
-  -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-
-  -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  'github/copilot.vim',
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -97,35 +73,22 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy' },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
   },
 
-  { -- Autocompletion
+  {
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
-
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-  -- { -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  --   'lewis6991/gitsigns.nvim',
-  --   opts = {
-  --     -- See `:help gitsigns.txt`
-  --     signs = {
-  --       add = { text = '+' },
-  --       change = { text = '~' },
-  --       delete = { text = '_' },
-  --       topdelete = { text = '‾' },
-  --       changedelete = { text = '~' },
-  --     },
-  --   },
-  -- },
-
-  -- { -- Theme inspired by Solarized
+  {
+    'folke/which-key.nvim',
+    opts = {},
+  },
+  -- {
   --   'tsuzat/neosolarized.nvim',
   --   lazy = false,
   --   priority = 1000,
@@ -133,32 +96,29 @@ require('lazy').setup({
   --     vim.cmd.colorscheme 'NeoSolarized'
   --   end,
   -- },
-
-  -- { -- Theme inspired by Atom
-  --   'navarasu/onedark.nvim',
+  { -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'onedark'
+    end,
+  },
+  -- { -- Theme inspired by Dracula
+  --   'Mofiqul/dracula.nvim',
   --   priority = 1000,
   --   config = function()
-  --     vim.cmd.colorscheme 'onedark'
+  --     vim.cmd.colorscheme 'dracula'
   --   end,
   -- },
 
-  { -- Theme inspired by Dracula
-    'Mofiqul/dracula.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'dracula'
-    end,
-  },
-
-  { -- Set lualine as statusline
+  {
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'dracula',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        theme = 'onedark',
+        component_separators = { left = '::', right = '::'},
+        section_separators = { left = '', right = ''},
       },
     },
   },
@@ -175,8 +135,6 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -273,11 +231,9 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -457,15 +413,15 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    -- ['<Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -482,6 +438,5 @@ cmp.setup {
   },
 }
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
---
+vim.cmd [[ hi Normal guibg=171421 ]]
+vim.cmd [[ hi EndOfBuffer guibg=171421 ]]

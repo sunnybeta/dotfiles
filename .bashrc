@@ -14,12 +14,6 @@ source ~/.bash_git
 # vim
 set -o vi
 
-# path
-PATH=$PATH:$HOME/.config/cargo/bin
-PATH=$PATH:/usr/local/go/bin
-PATH=$PATH:/opt/mssql-tools/bin
-export PATH
-
 # export
 export EDITOR=nvim
 export TERM=xterm
@@ -28,18 +22,28 @@ export HISTSIZE=1000
 export HISTFILESIZE=2000
 export LOCAL=$HOME/.local
 export WORK_HOME=$LOCAL/wrk/lolly
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.local/cache
 export PROJECT_HOME=$LOCAL/poj
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # dark background
+export JAVA_HOME="/usr/local/android-studio/jbr"
+
+# path
+PATH=$PATH:/usr/local/go/bin
+PATH=$PATH:/opt/mssql-tools/bin
+PATH=$PATH:/usr/local/flutter/bin
+PATH=$PATH:$JAVA_HOME
+export PATH
 
 # propmt
 export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]"
 
 # alias
-alias ppsmii='PYTHONPATH=$WORK_HOME/FiledMessenger && cd $WORK_HOME/FiledMessenger && source ../.venv/bin/activate'
+alias ppsmii='PYTHONPATH=$WORK_HOME && cd $WORK_HOME && source .venv/bin/activate'
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
 alias ls='ls --color=auto'
 alias byebye='shutdown now'
-alias mpstrt='pactl $(tail -n 1 /etc/pulse/default.pa)'
+alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
 alias make='clear && make'
 alias graph='git log --all --oneline --decorate --graph'
 alias dox='cd $LOCAL/dox'
@@ -49,6 +53,8 @@ alias vid='cd $LOCAL/vid'
 alias wrk='cd $LOCAL/wrk'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
+alias todo='vim $LOCAL/dox/todo'
+alias vfg='vim $XDG_CONFIG_HOME/nvim/init.lua'
 
 # autocomplete
 complete -cf sudo
@@ -70,7 +76,7 @@ grepl() {
 
 # download music
 ytdl() {
-	$HOME/.config/pyglob/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
+	$XDG_CONFIG_HOME/pyglob/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
 }
 
 # SLOC
@@ -87,5 +93,3 @@ passgen() {
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
 
-# opts
-source "$HOME/.config/cargo/env"
