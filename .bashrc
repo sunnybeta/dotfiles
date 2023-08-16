@@ -35,13 +35,14 @@ PATH=$PATH:/usr/local/flutter/bin
 PATH=$PATH:$JAVA_HOME
 export PATH
 
-# propmt
-export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]"
+# prompt
+export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]\n> "
 
 # alias
 alias ppsmii='PYTHONPATH=$WORK_HOME && cd $WORK_HOME && source .venv/bin/activate'
+alias ppsmi='PYTHONPATH=$WORK_HOME/FiledInfluencer/ && cd $WORK_HOME/FiledInfluencer && source .inf/bin/activate'
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first'
 alias byebye='shutdown now'
 alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
 alias make='clear && make'
@@ -53,8 +54,9 @@ alias vid='cd $LOCAL/vid'
 alias wrk='cd $LOCAL/wrk'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
-alias todo='vim $LOCAL/dox/todo'
-alias vfg='vim $XDG_CONFIG_HOME/nvim/init.lua'
+alias todo='nvim $LOCAL/dox/todo'
+alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
+alias vim='nvim'
 
 # autocomplete
 complete -cf sudo

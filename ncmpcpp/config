@@ -1,7 +1,8 @@
-ncmpcpp_directory = ~/.config/ncmpcpp
-lyrics_directory = ~/.config/ncmpcpp/.lyrics
+ncmpcpp_directory = /home/luci4/.config/ncmpcpp
+lyrics_directory = /home/luci4/.config/ncmpcpp/.lyrics
 mpd_host = localhost
 mpd_port = 6600
 mpd_music_dir = $LOCAL/mix
 progressbar_look = ━╸
 startup_screen = browser
+tags_separator = " | "
