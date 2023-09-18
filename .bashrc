@@ -95,3 +95,4 @@ passgen() {
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
 
+. "$HOME/.cargo/env"
