@@ -1,0 +1,78 @@
+!                   _                    _               _      
+!  _ ____  ____   _| |_      _   _ _ __ (_) ___ ___   __| | ___ 
+! | '__\ \/ /\ \ / / __|____| | | | '_ \| |/ __/ _ \ / _` |/ _ \
+! | |   >  <  \ V /| ||_____| |_| | | | | | (_| (_) | (_| |  __/
+! |_|  /_/\_\  \_/  \__|     \__,_|_| |_|_|\___\___/ \__,_|\___|
+                  
+
+URxvt.geometry: 400x400
+URxvt.scrollBar: false
+URxvt.transparent: true
+! URxvt.font: xft:undefined-medium:size=15
+URxvt.font: xft:undefined-medium:size=15
+URxvt.shading: 40
+URxvt.internalBorder: 10
+
+
+! !! GRUVBOX !!
+! 
+! # someground #
+! URxvt.background: #282828
+! URxvt.foreground: #ebdbb2
+! 
+! # colours #
+! URxvt.color0:  #282828
+! URxvt.color1:  #cc241d
+! 
+! URxvt.color2:  #98971a
+! URxvt.color3:  #d79921
+! 
+! URxvt.color4:  #458588
+! URxvt.color5:  #b16286
+! 
+! URxvt.color6:  #689d6a
+! URxvt.color7:  #a89984
+! 
+! URxvt.color8:  #928374
+! URxvt.color9:  #fb4934
+! 
+! URxvt.color10: #b8bb26
+! URxvt.color11: #fabd2f
+! 
+! URxvt.color12: #83a598
+! URxvt.color13: #d3869b
+! 
+! URxvt.color14: #8ec07c
+! URxvt.color15: #ebdbb2
+
+!! !! Kawaii !!
+ 
+URxvt.foreground:  #f9f9f9
+URxvt.background:  #434c53
+
+URxvt.cursorColor: #f9f9f9
+
+URxvt.color0:      #434c53
+URxvt.color8:      #4c566a
+
+URxvt.color1:      #fa5aa4
+URxvt.color9:      #fa74b2
+
+URxvt.color2:      #2be491
+URxvt.color10:     #44eb9f
+
+URxvt.color3:      #fa946e
+URxvt.color11:     #faa687
+
+URxvt.color4:      #63c5ea
+URxvt.color12:     #7acbea
+
+URxvt.color5:      #cf8ef4
+URxvt.color13:     #d8a6f4
+
+URxvt.color6:      #89ccf7
+URxvt.color14:     #a1d5f7
+
+URxvt.color7:      #f9f9f9
+URxvt.color15:     #ffffff
+
