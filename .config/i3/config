@@ -8,8 +8,8 @@
 ### definitions ###
 
 set $mod Mod1
-set $browser google-chrome
-set $term gnome-terminal
+set $browser firefox
+set $term urxvt
 set $vplayer mpv
 set $ws1 "1"
 set $ws2 "2"
@@ -42,7 +42,6 @@ font pango:noto mono:12
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-scale $HOME/.local/pix/peakpx.jpg
 
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -55,7 +54,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # screenshot
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/pix/$(date)"
 
 # appearance
 
