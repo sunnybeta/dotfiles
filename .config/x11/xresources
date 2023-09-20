@@ -8,19 +8,18 @@
 URxvt.geometry: 400x400
 URxvt.scrollBar: false
 URxvt.transparent: true
-! URxvt.font: xft:undefined-medium:size=15
-URxvt.font: xft:undefined-medium:size=15
-URxvt.shading: 40
+URxvt.font: xft:monofur:size=18
+URxvt.shading: 20
 URxvt.internalBorder: 10
 
 
-! !! GRUVBOX !!
-! 
-! # someground #
+! ----- GRUVBOX ----- !
+ 
+! ! ----- ground ----- !
 ! URxvt.background: #282828
 ! URxvt.foreground: #ebdbb2
 ! 
-! # colours #
+! ! ----- colors ----- !
 ! URxvt.color0:  #282828
 ! URxvt.color1:  #cc241d
 ! 
@@ -45,13 +44,17 @@ URxvt.internalBorder: 10
 ! URxvt.color14: #8ec07c
 ! URxvt.color15: #ebdbb2
 
-!! !! Kawaii !!
+
+! ----- KAWAII ----- !
  
+! ----- ground ----- !
 URxvt.foreground:  #f9f9f9
 URxvt.background:  #434c53
 
+! ----- cursor ----- |
 URxvt.cursorColor: #f9f9f9
 
+! ----- colors ----- |
 URxvt.color0:      #434c53
 URxvt.color8:      #4c566a
 
@@ -76,3 +79,290 @@ URxvt.color14:     #a1d5f7
 URxvt.color7:      #f9f9f9
 URxvt.color15:     #ffffff
 
+! --- BETA --- !
+                            
+! ### COLORS ###
+! 
+! ! someground
+! URxvt.background:	#000000
+! URxvt.foreground:	#98C2D7
+! ! black
+! URxvt.color0:	#425851
+! URxvt.color8:	#425851
+! ! red
+! URxvt.color1:	#BDB35A
+! URxvt.color9:	#BDB35A
+! ! green
+! URxvt.color2:	#BDB35A
+! URxvt.color10:	#BDB35A
+! ! yellow
+! URxvt.color3:	#779999
+! URxvt.color11:	#779999
+! ! blue
+! URxvt.color4:	#4E637D
+! URxvt.color12:	#4E637D
+! ! magenta
+! URxvt.color5:	#C0DECD
+! URxvt.color13:	#C0DECD
+! ! cyan
+! URxvt.color6:	#DFEF9C
+! URxvt.color14:	#DFEF9C
+! ! white
+! URxvt.color7:	#A7BCC7
+! URxvt.color15:	#A7BCC7
+
+! ----- BLACK AND WHITE ----- !
+
+! ### COLORS ###
+! 
+! URxvt.color0:	#101010
+! URxvt.color8:	#101010
+! URxvt.color1:	#7c7c7c
+! URxvt.color9:	#7c7c7c
+! URxvt.color2:	#8e8e8e
+! URxvt.color10:	#8e8e8e
+! URxvt.color3:	#a0a0a0
+! URxvt.color11:	#a0a0a0
+! URxvt.color4:	#686868
+! URxvt.color12:	#686868
+! URxvt.color5:	#747474
+! URxvt.color13:	#747474
+! URxvt.color6:	#868686
+! URxvt.color14:	#868686
+! URxvt.color7:	#b9b9b9
+! URxvt.color15:	#b9b9b9
+! 
+! URxvt.foreground: #ffffff
+! URxvt.background: #000000
+! black
+! red
+! green
+! yellow
+! blue
+! magenta
+! cyan
+! white
+
+
+! ----- LO-FI ----- !
+
+! ----- colors ----- !
+
+! URxvt.foreground:  #f9f9f9
+! URxvt.background:  #000000
+! 
+! URxvt.cursorColor: #f9f9f9
+! 
+! URxvt.color0:	#0c0a12
+! URxvt.color1:	#AB6A63
+! URxvt.color2:	#C06E5F
+! URxvt.color3:	#C6786F
+! URxvt.color4:	#CE8379
+! URxvt.color5:	#353A8D
+! URxvt.color6:	#3D4291
+! URxvt.color7:	#a7a1c4
+! URxvt.color8:	#747089
+! URxvt.color9:	#AB6A63
+! URxvt.color10:	#C06E5F
+! URxvt.color11:	#C6786F
+! URxvt.color12:	#CE8379
+! URxvt.color13:	#353A8D
+! URxvt.color14:	#3D4291
+! URxvt.color15:	#a7a1c4
+
+
+!----- MAGIC ----- !
+
+! *background:	#000000
+! *foreground:	#fe435b
+! 
+! *internalBorder:	10
+! 
+! !-- colours --!
+! 
+! *color0:	#1a1e21
+! *color8:	#ff78c6
+! 
+! *color1:	#fe435b
+! *color9:	#fe435b
+! 
+! *color2:	#4ee176
+! *color10:	#8e00e3
+! 
+! *color3:	#fdba21
+! *color11:	#fdba21
+! 
+! *color4:	#1380ef
+! *color12:	#1380ef
+! 
+! *color5:	#b444b4
+! *color13:	#b444b4
+! 
+! *color6:	#94aec7
+! *color14:	#94aec7
+! 
+! *color7:	#fffffd
+! *color15:	#f3264f
+
+
+
+! ----- MOLOKAI ----- !
+
+!! colors !!
+
+! URxvt.foreground:  #a08080
+! URxvt.background:  #272822
+! 
+! URxvt.color0:      #272822
+! URxvt.color8:      #303030
+! 
+! URxvt.color1:      #d0d0d0
+! URxvt.color9:      #ff0090
+! 
+! URxvt.color2:      #66aa11
+! URxvt.color10:     #80ff00
+! 
+! URxvt.color3:      #c47f2c
+! URxvt.color11:     #ffba68
+! 
+! URxvt.color4:      #30309b
+! URxvt.color12:     #5f5fee
+! 
+! URxvt.color5:      #7e40a5
+! URxvt.color13:     #bb88dd
+! 
+! URxvt.color6:      #3579a8
+! URxvt.color14:     #4eb4fa
+! 
+! URxvt.color7:      #9999aa
+! URxvt.color15:     #d0d0d0
+
+                                                              
+!! JAPFIC !!
+
+!-- colours --!
+
+! !cursor: #8bebc5
+! 
+! *color0: #0b1118
+! *color1: #554C41
+! *color2: #962A30
+! *color3: #F21B2B
+! *color4: #DF4D49
+! *color5: #2EA564
+! *color6: #F7934A
+! *color7: #8bebc5
+! *color8: #61A489
+! *color9: #554C41
+! *color10: #962A30
+! *color11: #F21B2B
+! *color12: #DF4D49
+! *color13: #2EA564
+! *color14: #F7934A
+! *color15: #8bebc5
+! 
+! *background: #0b1118
+! *foreground: #2EA564
+! 
+! *cursorColor:	#ffaf00
+! 
+! !define _colorBD       #afafdf
+! !define _colorUL       #dfdfaf
+
+
+!! MINIMALISM !!
+
+! !-- colours --!
+! 
+! *highlightColor: #2E2E2C
+! *cursorColor:    #AFB0AB
+! 
+! *borderColor:    #0A0A0A
+! 
+! *background:     #0A0A0A
+! *foreground:     #B8B9B4
+! 
+! !BLACK
+! *color0:  #0A0A0A
+! *color8:  #2E2E2C
+! !!RED
+! *color1:  #939490
+! *color9:  #989995
+! !!GREEN
+! *color2:  #5E5E5C
+! *color10: #636361
+! !!YELLOW
+! *color3:  #B6B8B3
+! *color11: #BBBDB8
+! !!BLUE
+! *color4:  #727370
+! *color12: #777875
+! !!MAGENTA
+! *color5:  #D1D1CB
+! *color13: #D6D6D0
+! !!CYAN
+! *color6:  #636361
+! *color14: #696966
+! !!WHITE
+! *color7:  #AAABA6
+! *color15: #AFB0AB
+                  
+! ----- VIOLETTE ----- !                                            
+
+! # someground #
+! URxvt.background: #000000
+! URxvt.foreground: #98c2d7
+! 
+! # colours #
+! URxvt.color0:  #1c111c
+! URxvt.color1:  #AB2E56
+! 
+! URxvt.color2:  #B74B6A
+! URxvt.color3:  #AB8C70
+! 
+! URxvt.color4:  #633C97
+! URxvt.color5:  #6A6393
+! 
+! URxvt.color6:  #C5608F
+! URxvt.color7:  #b0c7d4
+! 
+! URxvt.color8:  #AB2E56
+! URxvt.color9:  #B74B6A
+! 
+! URxvt.color10: #AB8C70
+! URxvt.color11: #633C97
+! 
+! URxvt.color12: #6A6393
+! URxvt.color13: #d3869b
+! 
+! URxvt.color14: #C5608F
+! URxvt.color15: #b0c7d4
+
+! ----- XORIA ----- !
+
+!-- colours --!
+
+! *color0:        #121212
+! *color8:        #0a0a0a
+! *color1:        #d78787
+! *color9:        #df8787
+! *color2:        #afd787
+! *color10:       #afdf87
+! *color3:        #f7f7af
+! *color11:       #ffffaf
+! *color4:        #87afd7
+! *color12:       #87afdf
+! *color5:        #d7afd7
+! *color13:       #dfafdf
+! *color6:        #afd7d7
+! *color14:       #afdfdf
+! *color7:        #e6e6e6
+! *color15:       #eeeeee
+! 
+! *foreground:    #d0d0d0
+! *background:    #1c1c1c
+! 
+! *cursorColor:	#ffaf00
+! 
+! !define _colorBD       #afafdf
+! !define _colorUL       #dfdfaf

@@ -25,7 +25,7 @@ alias vid='cd $LOCAL/vid'
 alias wrk='cd $LOCAL/wrk'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
-alias todo='nvim $LOCAL/dox/todo'
+alias todo='touch $LOCAL/dox/todo.md && nvim $LOCAL/dox/todo.md'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias vim='nvim'
 
@@ -33,7 +33,7 @@ alias vim='nvim'
 . $XDG_STATE_HOME/bash/git
 
 # prompt
-export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\` \[\e[00m\]\n> "
+export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\`\[\e[00m\] "
 
 # autocomplete
 complete -cf sudo

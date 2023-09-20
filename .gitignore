@@ -1,0 +1,8 @@
+# Xauthority
+xauthority
+
+# Tmux Plugins
+plugins/
+
+# Neovim Lazy
+lazy-lock.json
