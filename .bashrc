@@ -5,10 +5,10 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 #                                 
 
-# if not interactive, dont do anything
+# If not interactive, dont do anything
 [[ $- != *i* ]] && return
 
-# vim
+# Vim
 set -o vi
 
 # alias
@@ -29,27 +29,27 @@ alias todo='touch $LOCAL/dox/todo.md && nvim $LOCAL/dox/todo.md'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias vim='nvim'
 
-# source bash_git
+# Source bash_git
 . $XDG_STATE_HOME/bash/git
 
-# prompt
+# Prompt
 export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\`\[\e[00m\] "
 
-# autocomplete
+# Autocomplete
 complete -cf sudo
 complete -cf man
 
-# recursive grepper
+# Recursive grepper
 grepp() {
 	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv'
 }
 
-# recursive file grepper
+# Recursive file grepper
 grepl() {
 	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv'
 }
 
-# download music
+# Download music
 ytdl() {
 	$XDG_CONFIG_HOME/pyglob/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
 }
@@ -59,7 +59,7 @@ clocc() {
 	cloc . --exclude-dir='__pycache__,.venv'
 }
 
-# password generator
+# Password Generator
 passgen() {
 	LEN=$1
 	if [ -z $LEN ]; then

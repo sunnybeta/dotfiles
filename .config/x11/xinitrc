@@ -11,7 +11,7 @@ xsetroot -name "☃"
 # Hide Mouse Pointer
 unclutter -root -idle 3 &
 
-# # Set Wallpaper
+# Set Wallpaper
 feh --no-fehbg --bg-scale $XDG_CONFIG_HOME/wallpaper
  
 # Restore AlsaMixer Settings
