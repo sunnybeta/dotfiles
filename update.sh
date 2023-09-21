@@ -14,5 +14,5 @@ cp -r $XDG_CONFIG_HOME/ncmpcpp .config
 cp -r $XDG_CONFIG_HOME/neofetch .config
 cp -r $XDG_CONFIG_HOME/nvim .config
 cp -r $XDG_CONFIG_HOME/polybar .config
-cp -r $XDG_CONFIG_HOME/tmux .config
+cp -r $XDG_CONFIG_HOME/tmux .config > /dev/null 2>&1
 cp -r $XDG_CONFIG_HOME/x11 .config
