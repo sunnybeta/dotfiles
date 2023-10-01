@@ -35,7 +35,7 @@ set $ws10 "10"
 
 # font
 
-font pango:noto mono:12
+font MonofurNerdFont:NotoSansJP:12
 
 # startup
 
@@ -45,6 +45,7 @@ exec --no-startup-id nm-applet
 
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 
 # volume 
 
@@ -62,8 +63,8 @@ for_window [class="^.*"] border none
 
 # gaps
 
-gaps inner 10
-gaps outer 10
+gaps inner 0
+gaps outer 0
 
 ### custom ###
 
@@ -71,6 +72,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+s exec --no-startup-id ffmpeg -f x11grab -video_size 1920x1080 -i $DISPLAY -vframes 1 screenshot.jpg
 bindsym $mod+Shift+v exec --no-startup-id ffmpeg -f x11grab -video_size 1920x1080 -i $DISPLAY capture.mkv
 bindsym $mod+q exec $browser
+bindsym $mod+b exec polybar-msg cmd toggle
 bindsym $mod+Shift+q kill
 bindsym $mod+h focus left
 bindsym $mod+j focus down

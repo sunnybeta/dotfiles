@@ -47,7 +47,7 @@ export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 # Path
 PATH=$PATH:$BUN_INSTALL/bin
 PATH=$PATH:$LOCAL/bin
-# PATH=$PATH:$LOCAL/bin
+PATH=$PATH:/usr/local/go/bin
 export PATH
 
 # Git

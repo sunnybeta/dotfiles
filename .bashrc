@@ -5,10 +5,10 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 #                                 
 
-# If not interactive, dont do anything
+# if not interactive, dont do anything
 [[ $- != *i* ]] && return
 
-# Vim
+# vim
 set -o vi
 
 # alias
@@ -28,30 +28,32 @@ alias home='cd $LOCAL && ls'
 alias todo='touch $LOCAL/dox/todo.md && nvim $LOCAL/dox/todo.md'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias vim='nvim'
+alias reso='nvim $XDG_CONFIG_HOME/x11/xresources'
+alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
 
-# Source bash_git
+# source bash_git
 . $XDG_STATE_HOME/bash/git
 
-# Prompt
+# prompt
 export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\`\[\e[00m\] "
 
-# Autocomplete
+# autocomplete
 complete -cf sudo
 complete -cf man
 
-# Recursive grepper
+# recursive grepper
 grepp() {
 	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv'
 }
 
-# Recursive file grepper
+# recursive file grepper
 grepl() {
 	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv'
 }
 
-# Download music
+# download music
 ytdl() {
-	$XDG_CONFIG_HOME/pyglob/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
+	$XDG_CONFIG_HOME/venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
 }
 
 # SLOC
@@ -59,7 +61,7 @@ clocc() {
 	cloc . --exclude-dir='__pycache__,.venv'
 }
 
-# Password Generator
+# password generator
 passgen() {
 	LEN=$1
 	if [ -z $LEN ]; then
