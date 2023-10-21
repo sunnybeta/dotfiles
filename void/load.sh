@@ -2,8 +2,6 @@
 
 cd $HOME/.local/poj/rice
 
-cp $XDG_STATE_HOME/bash/git .bash_git
-
 cp .bashrc $HOME/.bashrc
 cp .profile $HOME/.profile
 
