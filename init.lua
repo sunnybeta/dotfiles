@@ -16,6 +16,7 @@ vim.o.ignorecase = true
 vim.o.shiftwidth = 4
 vim.o.smartcase = true
 vim.o.tabstop = 4
+vim.o.expandtab = false
 vim.o.termguicolors = true
 vim.o.timeout = true
 vim.o.timeoutlen = 300
@@ -34,13 +35,13 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.laststatus = 2
 vim.opt.list = true
-vim.opt.listchars = { eol = '¬', tab = '-'} -- ┊-' } -- tab = '▶-' }
+vim.opt.listchars = { eol = '¬', tab = '┊-'} -- -' } -- tab = '▶-' }
 vim.opt.path:append { '**' }
 vim.opt.scrolloff = 2
 vim.opt.shell = 'bash'
 vim.opt.showcmd = true
 vim.opt.si = true
-vim.opt.smarttab = true
+vim.opt.smarttab = false
 vim.opt.title = true
 vim.opt.wildignore:append { '*/node_modules/*', '*/__pycache__/*' }
 vim.opt.cursorline = false
@@ -57,9 +58,9 @@ vim.wo.relativenumber = true
 vim.wo.signcolumn = 'no'
 vim.wo.wrap = true
 
--- vim.keymap.set('i', 'boxx', '☐')
--- vim.keymap.set('i', 'boxt', '☒')
--- vim.keymap.set('i', '*(',   '★')
+vim.keymap.set('i', 'boxx', '☐')
+vim.keymap.set('i', 'boxt', '☒')
+vim.keymap.set('i', '*(',   '★')
 vim.keymap.set('i', '=-=',  '≡')
 vim.keymap.set('i', '->>',  '→')
 vim.keymap.set('i', 'tickk','✓')
@@ -67,6 +68,7 @@ vim.keymap.set('i', '+-',   '±')
 vim.keymap.set('i', '<--',  '←')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
 vim.keymap.set('n', '[d',        vim.diagnostic.goto_prev,  { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d',        vim.diagnostic.goto_next,  { desc = 'Go to next diagnostic message'     })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message'  })
@@ -89,16 +91,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
------ LAZY -----
-
 require('lazy').setup({
 	{
 		'rcarriga/nvim-notify',
 		lazy = false,
 	},
 	{
-		'rose-pine/neovim',
-		name = 'rose-pine',
+		'Tsuzat/NeoSolarized.nvim',
+		name = 'solarized',
 		lazy = false,
 		priority = 1000,
 	},
@@ -158,8 +158,6 @@ require('lazy').setup({
 	},
 })
 
------ NOTIFY -----
-
 vim.notify = require('notify')
 
 require('notify').setup({
@@ -171,35 +169,20 @@ require('notify').setup({
 	fps= 60,
 })
 
------ THEME -----
-
-vim.cmd.colorscheme 'rose-pine'
+vim.cmd.colorscheme 'NeoSolarized'
 vim.api.nvim_set_hl(0, 'Normal',      { bg = 'None' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'None' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'None' })
 
--- 'navarasu/onedark.nvim',
--- 'sainnhe/everforest',
--- 'Tsuzat/NeoSolarized.nvim',
--- 'catppuccin/nvim',
--- 'morhetz/gruvbox',
--- 'Mofiqul/dracula.nvim',
--- 'Mofiqul/dracula.nvim',
--- 'rose-pine/neovim'
-
------ LUALINE -----
-
 require('lualine').setup({
 	options = {
 		icons_enabled = true,
-		theme = 'horizon',
+		theme = 'solarized',
 		component_separators = { left = '┊', right = '┊'},
-		section_separators = { left = '', right = '' },
-		-- section_separators   = { left = '', right = ''},
+		section_separators   = { left = '', right = ''},
 	}
 })
 
------ TELESCOPRE -----
 require('telescope').setup({
 	defaults = {
 		mappings = {
@@ -218,8 +201,6 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep,   { desc = '[S]earch by [G]rep'      })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics'  })
 
------ TREESITTER -----
-
 require('nvim-treesitter.configs').setup({
 	ensure_installed = { 'c', 'cpp', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'typescript', 'python', 'markdown', 'bash', 'go', 'rust' },
 	ignore_install = {},
@@ -234,8 +215,6 @@ require('nvim-treesitter.configs').setup({
 		enable = true,
 	}
 })
-
------ TREE -----
 
 require('nvim-tree').setup({
 	view = {
@@ -256,8 +235,6 @@ require('nvim-tree').setup({
 		}
 	}
 })
-
------ CMP -----
 
 local cmp = require('cmp')
 
@@ -291,8 +268,6 @@ cmp.setup({
 })
 
 
------- LSP -----
-
 local on_attach = function(_, bufnr)
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = 'LSP: [G]oto [D]efinition'})
 end
@@ -317,15 +292,15 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
 	ensure_installed = {
-		'lua_ls',
-		'cssls',
-		'tailwindcss',
 		'tsserver',
+		'lua_ls',
+		'jdtls',
 		'rust_analyzer',
 		'pyright',
 		'gopls',
 		'clangd',
 		'html',
+		'cssls',
 		'marksman'
 	},
 	automatic_installation=true,
@@ -347,17 +322,23 @@ lspconfig.cssls.setup({
 	on_attach = on_attach,
 })
 
+lspconfig.gopls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig.rust_analyzer.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
-lspconfig.tailwindcss.setup({
+lspconfig.jdtls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
-lspconfig.tsserver.setup({
+
+lspconfig.html.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
@@ -385,3 +366,7 @@ lspconfig.lua_ls.setup({
 	}
 })
 
+lspconfig.tsserver.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
