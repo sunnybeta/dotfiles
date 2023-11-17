@@ -1,8 +1,0 @@
-ncmpcpp_directory = /home/beta/.config/ncmpcpp
-lyrics_directory = /home/beta/.config/ncmpcpp/.lyrics
-mpd_host = localhost
-mpd_port = 6600
-mpd_music_dir = $LOCAL/mix
-progressbar_look = ━╸
-startup_screen = browser
-tags_separator = " | "

@@ -32,7 +32,7 @@ export XDG_CONFIG_DIRS=/etc/xdg
 
 # Derived
 export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
-export ENV=HOME/.bashrc
+export ENV=$HOME/.bashrc
 export FEHBG_HOME=$XDG_CONFIG_HOME/fehbg
 export HISTFILE=$XDG_STATE_HOME/bash/history
 export PROJECT_HOME=$LOCAL/poj
@@ -43,6 +43,7 @@ export XINITRC=$XDG_CONFIG_HOME/x11/xinitrc
 export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
+export JAVA_HOME=/usr
 
 
 # Path
