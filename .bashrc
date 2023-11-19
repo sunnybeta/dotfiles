@@ -44,9 +44,13 @@ export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
 export JAVA_HOME=/usr
+export CARGO_HOME=$XDG_CONFIG_HOME/cargo
 
+# Rust
+. $CARGO_HOME/env
 
 # Path
+PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$BUN_INSTALL/bin
 PATH=$PATH:$LOCAL/bin
 PATH=$PATH:/usr/local/go/bin
@@ -78,6 +82,8 @@ alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias vim='nvim'
 alias reso='nvim $XDG_CONFIG_HOME/x11/xresources'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
+alias g='git'
+alias gst='git status'
 
 # git branch
 function parse_git_branch() {
@@ -85,7 +91,7 @@ function parse_git_branch() {
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo "(${BRANCH}${STAT}) "
+		echo " ${BRANCH}${STAT} "
 	else
 		echo ""
 	fi
@@ -102,22 +108,22 @@ function parse_git_dirty {
 	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
 	bits=''
 	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
+		bits="± ${bits}"
 	fi
 	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
+		bits="󰠠 ${bits}"
 	fi
 	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
+		bits=" ${bits}"
 	fi
 	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
+		bits="≡ ${bits}"
 	fi
 	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
+		bits=" ${bits}"
 	fi
 	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
+		bits=" ${bits}"
 	fi
 	if [ ! "${bits}" == "" ]; then
 		echo " ${bits}"
