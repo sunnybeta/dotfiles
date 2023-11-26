@@ -1,4 +1,4 @@
-# Rice
+# Dotfiles
 
 This repo consists of my dotfiles for Ubuntu 20.04.
 
