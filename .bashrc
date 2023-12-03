@@ -45,7 +45,8 @@ export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
 export JAVA_HOME=/usr
 export CARGO_HOME=$XDG_CONFIG_HOME/cargo
-
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
 # Rust
 . $CARGO_HOME/env
 
@@ -91,7 +92,7 @@ function parse_git_branch() {
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo " ${BRANCH}${STAT} "
+		echo "(${BRANCH}${STAT})"
 	else
 		echo ""
 	fi
@@ -133,7 +134,7 @@ function parse_git_dirty {
 }
 
 # prompt
-export PS1="\[\e[1;30m\][\[\e[1;33m\]\W\[\e[1;30m\]]\[\e[1;32m\]\`parse_git_branch\`\[\e[00m\] "
+export PS1="\[\e[1;30m\][\[\e[1;32m\]\W\[\e[1;30m\]]\[\e[1;35m\]\`parse_git_branch\`\[\e[00m\] "
 
 # autocomplete
 complete -cf sudo
