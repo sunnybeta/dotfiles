@@ -12,11 +12,11 @@ vim.o.background = 'dark'
 vim.o.breakindent = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menuone,noselect'
+vim.o.expandtab = false
 vim.o.ignorecase = true
 vim.o.shiftwidth = 4
 vim.o.smartcase = true
 vim.o.tabstop = 4
-vim.o.expandtab = false
 vim.o.termguicolors = true
 vim.o.timeout = true
 vim.o.timeoutlen = 300
@@ -25,9 +25,11 @@ vim.o.updatetime = 250
 
 vim.opt.ai = true
 vim.opt.autoindent = true
+vim.opt.background = 'dark'
 vim.opt.backspace = 'start,eol,indent'
 vim.opt.breakindent = true
 vim.opt.cmdheight = 0
+vim.opt.cursorline = false
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 vim.opt.guicursor = ''
@@ -37,26 +39,24 @@ vim.opt.laststatus = 2
 vim.opt.list = true
 vim.opt.listchars = { eol = '¬', tab = '┊-'} -- -' } -- tab = '▶-' }
 vim.opt.path:append { '**' }
+vim.opt.pumblend = 5
 vim.opt.scrolloff = 2
 vim.opt.shell = 'bash'
 vim.opt.showcmd = true
 vim.opt.si = true
 vim.opt.smarttab = false
+vim.opt.termguicolors = true
 vim.opt.title = true
 vim.opt.wildignore:append { '*/node_modules/*', '*/__pycache__/*' }
-vim.opt.cursorline = false
-vim.opt.termguicolors = true
-vim.opt.winblend = 0
-vim.opt.pumblend = 5
 vim.opt.wildoptions = 'pum'
-vim.opt.background = 'dark'
+vim.opt.winblend = 0
 
 vim.scriptencoding = 'utf-8'
 
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = 'no'
-vim.wo.wrap = true
+vim.wo.wrap = false
 
 vim.keymap.set('i', 'boxx', '☐')
 vim.keymap.set('i', 'boxt', '☒')
@@ -97,8 +97,9 @@ require('lazy').setup({
 		lazy = false,
 	},
 	{
-		'Tsuzat/NeoSolarized.nvim',
-		name = 'solarized',
+		'sunnybeta/icecream',
+		name = 'icecream',
+		branch = 'neovim',
 		lazy = false,
 		priority = 1000,
 	},
@@ -169,17 +170,62 @@ require('notify').setup({
 	fps= 60,
 })
 
-vim.cmd.colorscheme 'NeoSolarized'
+vim.cmd.colorscheme 'icecream'
 vim.api.nvim_set_hl(0, 'Normal',      { bg = 'None' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'None' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'None' })
 
+
+local colors = {
+  black      = '#111111',
+  lightgray  = '#9387c0',
+  orange     = '#206bc4',
+  purple     = '#583c6f',
+  red        = '#f00359',
+  yellow     = '#fdba21',
+  green      = '#23855d',
+  white      = '#f00359',
+}
+
+local lualine_theme = {
+  normal = {
+    a = { bg = colors.yellow, fg = colors.black, gui = 'bold' },
+    b = { bg = colors.lightblack, fg = colors.white },
+    c = { bg = colors.black, fg = colors.white },
+  },
+  insert = {
+    a = { bg = colors.green, fg = colors.black, gui = 'bold' },
+    b = { bg = colors.lightblack, fg = colors.white },
+    c = { bg = colors.black, fg = colors.white },
+  },
+  visual = {
+    a = { bg = colors.purple, fg = colors.black, gui = 'bold' },
+    b = { bg = colors.lightblack, fg = colors.white },
+    c = { bg = colors.black, fg = colors.white },
+  },
+  replace = {
+    a = { bg = colors.red, fg = colors.black, gui = 'bold' },
+    b = { bg = colors.lightblack, fg = colors.white },
+    c = { bg = colors.black, fg = colors.white },
+  },
+  command = {
+    a = { bg = colors.orange, fg = colors.black, gui = 'bold' },
+    b = { bg = colors.lightblack, fg = colors.white },
+    c = { bg = colors.black, fg = colors.white },
+  },
+  inactive = {
+    a = { bg = colors.black, fg = colors.white, gui = 'bold' },
+    b = { bg = colors.lightblack, fg = colors.white },
+    c = { bg = colors.black, fg = colors.white },
+  },
+}
+
 require('lualine').setup({
 	options = {
 		icons_enabled = true,
-		theme = 'solarized',
+		theme = lualine_theme,
 		component_separators = { left = '┊', right = '┊'},
-		section_separators   = { left = '', right = ''},
+		section_separators   = { left = ' ' , right = ' '}, -- { left = '', right = ''},
 	}
 })
 
@@ -292,6 +338,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
 	ensure_installed = {
+		'tailwindcss',
 		'tsserver',
 		'lua_ls',
 		'jdtls',
@@ -337,6 +384,10 @@ lspconfig.jdtls.setup({
 	on_attach = on_attach,
 })
 
+lspconfig.bashls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 lspconfig.html.setup({
 	capabilities = capabilities,
@@ -367,6 +418,11 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.tsserver.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig.tailwindcss.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
