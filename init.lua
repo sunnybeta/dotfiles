@@ -13,8 +13,9 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.expandtab = false
 vim.o.ignorecase = true
 vim.o.shiftwidth = 4
-vim.o.smartcase = true
 vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.smartcase = true
 vim.o.termguicolors = true
 vim.o.timeout = true
 vim.o.timeoutlen = 300
@@ -116,7 +117,7 @@ require('lazy').setup({
 		lazy=false,
 		event = {'BufReadPre','BufNewFile'},
 		dependencies = {
-		'hrsh7th/nvim-cmp',
+			'hrsh7th/nvim-cmp',
 			'L3MON4D3/LuaSnip',
 			'hrsh7th/cmp-nvim-lsp',
 			'williamboman/mason-lspconfig.nvim',
@@ -129,46 +130,46 @@ vim.api.nvim_set_hl(0, 'Normal',      { bg = 'None' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'None' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'None' })
 local colors = {
-  black      = '#111111',
-  lightgray  = '#9387c0',
-  orange     = '#206bc4',
-  purple     = '#583c6f',
-  red        = '#f00359',
-  yellow     = '#fdba21',
-  green      = '#23855d',
-  white      = '#f00359',
+	black      = '#111111',
+	lightgray  = '#9387c0',
+	orange     = '#206bc4',
+	purple     = '#583c6f',
+	red        = '#f00359',
+	yellow     = '#fdba21',
+	green      = '#23855d',
+	white      = '#f00359',
 }
 local lualine_theme = {
-  normal = {
-    a = { bg = colors.yellow, fg = colors.black, gui = 'bold' },
-    b = { bg = colors.lightblack, fg = colors.white },
-    c = { bg = colors.black, fg = colors.white },
-  },
-  insert = {
-    a = { bg = colors.green, fg = colors.black, gui = 'bold' },
-    b = { bg = colors.lightblack, fg = colors.white },
-    c = { bg = colors.black, fg = colors.white },
-  },
-  visual = {
-    a = { bg = colors.purple, fg = colors.black, gui = 'bold' },
-    b = { bg = colors.lightblack, fg = colors.white },
-    c = { bg = colors.black, fg = colors.white },
-  },
-  replace = {
-    a = { bg = colors.red, fg = colors.black, gui = 'bold' },
-    b = { bg = colors.lightblack, fg = colors.white },
-    c = { bg = colors.black, fg = colors.white },
-  },
-  command = {
-    a = { bg = colors.orange, fg = colors.black, gui = 'bold' },
-    b = { bg = colors.lightblack, fg = colors.white },
-    c = { bg = colors.black, fg = colors.white },
-  },
-  inactive = {
-    a = { bg = colors.black, fg = colors.white, gui = 'bold' },
-    b = { bg = colors.lightblack, fg = colors.white },
-    c = { bg = colors.black, fg = colors.white },
-  },
+	normal = {
+		a = { bg = colors.yellow, fg = colors.black, gui = 'bold' },
+		b = { bg = colors.lightblack, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+	},
+	insert = {
+		a = { bg = colors.green, fg = colors.black, gui = 'bold' },
+		b = { bg = colors.lightblack, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+	},
+	visual = {
+		a = { bg = colors.purple, fg = colors.black, gui = 'bold' },
+		b = { bg = colors.lightblack, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+	},
+	replace = {
+		a = { bg = colors.red, fg = colors.black, gui = 'bold' },
+		b = { bg = colors.lightblack, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+	},
+	command = {
+		a = { bg = colors.orange, fg = colors.black, gui = 'bold' },
+		b = { bg = colors.lightblack, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+	},
+	inactive = {
+		a = { bg = colors.black, fg = colors.white, gui = 'bold' },
+		b = { bg = colors.lightblack, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+	},
 }
 require('lualine').setup({
 	options = {
@@ -248,17 +249,18 @@ require('mason').setup({
 })
 require('mason-lspconfig').setup({
 	ensure_installed = {
+		'clangd',
+		'cssls',
+		'gopls',
+		'html',
+		'jdtls',
+		'lua_ls',
+		'marksman',
+		'pyright',
+		'rust_analyzer',
 		'tailwindcss',
 		'tsserver',
-		'lua_ls',
-		'jdtls',
-		'rust_analyzer',
-		'pyright',
-		'gopls',
-		'clangd',
-		'html',
-		'cssls',
-		'marksman'
+		'volar'
 	},
 	automatic_installation=true,
 })
@@ -266,6 +268,23 @@ vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticS
 vim.fn.sign_define('DiagnosticSignWarn',  { text = ' ', texthl = 'DiagnosticSignWarn',  numhl = '' })
 vim.fn.sign_define('DiagnosticSignHint',  { text = '󰠠 ', texthl = 'DiagnosticSignHint',  numhl = '' })
 vim.fn.sign_define('DiagnosticSignInfo',  { text = ' ', texthl = 'DiagnosticSignInfo',  numhl = '' })
+lspconfig.lua_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			diagnositcs = {
+				globals = {'vim'}
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file('', true),
+			},
+			telemetry = {
+				enable = false,
+			}
+		}
+	}
+})
 lspconfig.pyright.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -298,28 +317,15 @@ lspconfig.marksman.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
-lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {
-		Lua = {
-			diagnositcs = {
-				globals = {'vim'}
-			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true),
-			},
-			telemetry = {
-				enable = false,
-			}
-		}
-	}
-})
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 lspconfig.tailwindcss.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+lspconfig.volar.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
