@@ -6,6 +6,8 @@
 --                                    
 vim.g.mapleader = '\\'
 vim.g.maplocalleader = '\\'
+vim.g.loaded_netrwPlugin = 0
+vim.g.nvim_tree_autoopen = 1
 vim.o.background = 'dark'
 vim.o.breakindent = true
 vim.o.clipboard = 'unnamedplus'
@@ -112,6 +114,12 @@ require'lazy'.setup({
 		build = ':TSUpdate',
 	},
 	{
+		'nvim-tree/nvim-tree.lua',
+		dependencies = {
+			'nvim-tree/nvim-web-devicons',
+		},
+	},
+	{
 		'neovim/nvim-lspconfig',
 		lazy=false,
 		event = {'BufReadPre','BufNewFile'},
@@ -124,6 +132,10 @@ require'lazy'.setup({
 			'L3MON4D3/LuaSnip',
 			'saadparwaiz1/cmp_luasnip',
 		},
+	},
+	{
+		'christoomey/vim-tmux-navigator',
+		lazy=false,
 	}
 })
 vim.cmd.colorscheme 'icecream'
@@ -135,7 +147,7 @@ require'lualine'.setup({
 		icons_enabled = true,
 		theme = 'auto',
 		component_separators = { left = '┊', right = '┊'},
-		section_separators   = { left = ' ' , right = ' '},
+		section_separators   = { left = ' ', right = ' '},
 	}
 })
 require'telescope'.setup({
@@ -147,14 +159,18 @@ require'telescope'.setup({
 		  },
 		},
 	},
+	extensions = {
+		file_mappings = {
+			hijack_netrw = true
+		}
+	},
 })
 vim.keymap.set('n', '<leader>gf', require'telescope.builtin'.git_files,   { desc = '[S]earch Gi[T] Files'    })
 vim.keymap.set('n', '<leader>sf', require'telescope.builtin'.find_files,  { desc = '[S]earch [F]iles'        })
 vim.keymap.set('n', '<leader>sh', require'telescope.builtin'.help_tags,   { desc = '[S]earch [H]elp'         })
-vim.keymap.set('n', '<leader>sw', require'telescope.builtin'.grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sw', require'telescope.builtin'.grep_string, { desc = '[S]earch [W]ord'         })
 vim.keymap.set('n', '<leader>sg', require'telescope.builtin'.live_grep,   { desc = '[S]earch by [G]rep'      })
 vim.keymap.set('n', '<leader>sd', require'telescope.builtin'.diagnostics, { desc = '[S]earch [D]iagnostics'  })
-
 require'nvim-treesitter.configs'.setup({
 	ensure_installed = { 'c', 'cpp', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'typescript', 'python', 'markdown', 'bash', 'go', 'rust' },
 	ignore_install = {},
@@ -167,6 +183,11 @@ require'nvim-treesitter.configs'.setup({
 	},
 	autotag = {
 		enable = true,
+	}
+})
+require'nvim-tree'.setup({
+	diagnostics = {
+		enable=true
 	}
 })
 require'mason'.setup({
