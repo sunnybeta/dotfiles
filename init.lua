@@ -4,19 +4,18 @@
 -- | | | |  __/ (_) \ V /| | | | | | |
 -- |_| |_|\___|\___/ \_/ |_|_| |_| |_|
 --                                    
-vim.g.mapleader = '\\'
-vim.g.maplocalleader = '\\'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 vim.g.loaded_netrwPlugin = 0
-vim.g.nvim_tree_autoopen = 1
 vim.o.background = 'dark'
 vim.o.breakindent = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.expandtab = false
 vim.o.ignorecase = true
-vim.o.shiftwidth = 4
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
 vim.o.smartcase = true
 vim.o.termguicolors = true
 vim.o.timeout = true
@@ -37,7 +36,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.laststatus = 2
 vim.opt.list = true
-vim.opt.listchars = { eol = '¬', tab = '┊-'}
+vim.opt.listchars = { eol = '¬', tab = '▸·'}
 vim.opt.path:append { '**' }
 vim.opt.pumblend = 5
 vim.opt.scrolloff = 2
@@ -54,7 +53,7 @@ vim.scriptencoding = 'utf-8'
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = 'no'
-vim.wo.wrap = false
+vim.wo.wrap = true
 vim.keymap.set('i', 'boxx', '☐')
 vim.keymap.set('i', 'boxt', '☒')
 vim.keymap.set('i', '*(',   '★')
@@ -146,7 +145,7 @@ require'lualine'.setup({
 	options = {
 		icons_enabled = true,
 		theme = 'auto',
-		component_separators = { left = '┊', right = '┊'},
+		component_separators = { left = ' ', right = '┊'},
 		section_separators   = { left = ' ', right = ' '},
 	}
 })
@@ -190,6 +189,7 @@ require'nvim-tree'.setup({
 		enable=true
 	}
 })
+vim.keymap.set('n', '<C-n>', ":NvimTreeToggle<CR>")
 require'mason'.setup({
 	ui={
 		icons={
