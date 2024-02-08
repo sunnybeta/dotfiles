@@ -45,10 +45,15 @@ export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
 export JAVA_HOME=/usr
 export CARGO_HOME=$XDG_CONFIG_HOME/cargo
+export GHCUP_HOME=$HOME/.ghcup
 export LC_ALL=en_IN.UTF-8
 export LANG=en_IN.UTF-8
+
 # Rust
-. $CARGO_HOME/env
+source $CARGO_HOME/env
+
+# Haskell
+source $GHCUP_HOME/env
 
 # Path
 PATH=$PATH:$CARGO_HOME/bin
@@ -80,11 +85,8 @@ alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
 alias todo='touch $LOCAL/dox/todo.md && nvim $LOCAL/dox/todo.md'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
-alias vim='nvim'
 alias reso='nvim $XDG_CONFIG_HOME/x11/xresources'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
-alias g='git'
-alias gst='git status'
 
 # git branch
 function parse_git_branch() {
@@ -168,3 +170,4 @@ passgen() {
 	fi
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
+
