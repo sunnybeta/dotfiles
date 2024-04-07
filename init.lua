@@ -36,7 +36,8 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.laststatus = 2
 vim.opt.list = true
-vim.opt.listchars = { eol = '¬', tab = '▸·'}
+vim.opt.listchars = { eol = '¬', tab = '┊ '}
+-- vim.opt.listchars = { eol = '¬', tab = '▸-'}
 vim.opt.path:append { '**' }
 vim.opt.pumblend = 5
 vim.opt.scrolloff = 2
@@ -86,6 +87,7 @@ require'lazy'.setup({
 	{
 		'liminalminds/icecream.nvim',
 		name = 'icecream',
+		-- branch = 'v2',
 		lazy = false,
 		priority = 1000,
 	},
@@ -118,29 +120,34 @@ require'lazy'.setup({
 			'nvim-tree/nvim-web-devicons',
 		},
 	},
-	{
-		'neovim/nvim-lspconfig',
-		lazy=false,
-		event = {'BufReadPre','BufNewFile'},
-		dependencies = {
-			'williamboman/mason.nvim',
-			'hrsh7th/nvim-cmp',
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-buffer',
-			'hrsh7th/cmp-path',
-			'L3MON4D3/LuaSnip',
-			'saadparwaiz1/cmp_luasnip',
-		},
+{
+	'neovim/nvim-lspconfig',
+	lazy=false,
+	event = {'BufReadPre','BufNewFile'},
+	dependencies = {
+		'williamboman/mason.nvim',
+		'hrsh7th/nvim-cmp',
+		'hrsh7th/cmp-nvim-lsp',
+		'hrsh7th/cmp-buffer',
+		'hrsh7th/cmp-path',
+		'L3MON4D3/LuaSnip',
+		'saadparwaiz1/cmp_luasnip',
 	},
+},
 	{
 		'christoomey/vim-tmux-navigator',
+		lazy=false,
+	},
+	{
+		'vimwiki/vimwiki',
 		lazy=false,
 	}
 })
 vim.cmd.colorscheme 'icecream'
--- vim.api.nvim_set_hl(0, 'Normal',      { bg = 'None' })
--- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'None' })
--- vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'None' })
+vim.api.nvim_set_hl(0, 'Normal',      { bg = 'None' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'None' })
+vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'None' })
+
 require'lualine'.setup({
 	options = {
 		icons_enabled = true,
@@ -282,10 +289,6 @@ require'lspconfig'.html.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
-require'lspconfig'.marksman.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
 require'lspconfig'.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -295,6 +298,10 @@ require'lspconfig'.tailwindcss.setup({
 	capabilities = capabilities,
 })
 require'lspconfig'.volar.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+require'lspconfig'.clangd.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
