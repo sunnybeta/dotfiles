@@ -44,16 +44,16 @@ export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
 export JAVA_HOME=/usr
-export CARGO_HOME=$XDG_CONFIG_HOME/cargo
-export GHCUP_HOME=$HOME/.ghcup
-export LC_ALL=en_IN.UTF-8
-export LANG=en_IN.UTF-8
+# export CARGO_HOME=$XDG_CONFIG_HOME/cargo
+# export GHCUP_HOME=$HOME/.ghcup
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Rust
-source $CARGO_HOME/env
+# source $CARGO_HOME/env
 
 # Haskell
-source $GHCUP_HOME/env
+# source $GHCUP_HOME/env
 
 # Path
 PATH=$PATH:$CARGO_HOME/bin
@@ -73,6 +73,9 @@ set -o vi
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
 alias ls='ls --color=auto --group-directories-first'
 alias byebye='sudo shutdown -h now'
+alias mount='sudo mount'
+alias umount='sudo umount'
+alias pacman='sudo pacman'
 alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
 alias make='clear && make'
 alias graph='git log --all --oneline --decorate --graph'
@@ -144,12 +147,12 @@ complete -cf man
 
 # recursive grepper
 grepp() {
-	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv'
+	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/'
 }
 
 # recursive file grepper
 grepl() {
-	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv'
+	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/'
 }
 
 # download music
@@ -159,7 +162,7 @@ ytdl() {
 
 # SLOC
 clocc() {
-	cloc . --exclude-dir='__pycache__,.venv'
+	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache'
 }
 
 # password generator
@@ -170,4 +173,5 @@ passgen() {
 	fi
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
+clear
 
