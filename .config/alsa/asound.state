@@ -2,8 +2,8 @@ state.PCH {
 	control.1 {
 		iface MIXER
 		name 'Headphone Playback Volume'
-		value.0 76
-		value.1 76
+		value.0 87
+		value.1 87
 		comment {
 			access 'read write'
 			type INTEGER
@@ -11,8 +11,8 @@ state.PCH {
 			range '0 - 87'
 			dbmin -6525
 			dbmax 0
-			dbvalue.0 -825
-			dbvalue.1 -825
+			dbvalue.0 0
+			dbvalue.1 0
 		}
 	}
 	control.2 {
@@ -156,7 +156,7 @@ state.PCH {
 	control.12 {
 		iface MIXER
 		name 'Master Playback Volume'
-		value 76
+		value 66
 		comment {
 			access 'read write'
 			type INTEGER
@@ -164,7 +164,7 @@ state.PCH {
 			range '0 - 87'
 			dbmin -6525
 			dbmax 0
-			dbvalue.0 -825
+			dbvalue.0 -1575
 		}
 	}
 	control.13 {
@@ -190,7 +190,7 @@ state.PCH {
 	control.15 {
 		iface CARD
 		name 'Headphone Mic Jack'
-		value true
+		value false
 		comment {
 			access read
 			type BOOLEAN
@@ -495,7 +495,7 @@ state.PCH {
 		value.0 255
 		value.1 255
 		comment {
-			access 'read write user'
+			access 'read write locked user'
 			type INTEGER
 			count 2
 			range '0 - 255'
