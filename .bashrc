@@ -44,13 +44,14 @@ export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
 export JAVA_HOME=/usr
-# export CARGO_HOME=$XDG_CONFIG_HOME/cargo
+export CARGO_HOME=$XDG_CONFIG_HOME/cargo
+export RUSTUP_HOME=$XDG_CONFIG_HOME/rustup
 # export GHCUP_HOME=$HOME/.ghcup
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Rust
-# source $CARGO_HOME/env
+source $CARGO_HOME/env
 
 # Haskell
 # source $GHCUP_HOME/env
@@ -72,7 +73,7 @@ set -o vi
 # alias
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
 alias ls='ls --color=auto --group-directories-first'
-alias byebye='sudo shutdown -h now'
+alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now'
 alias mount='sudo mount'
 alias umount='sudo umount'
 alias pacman='sudo pacman'
@@ -89,7 +90,9 @@ alias home='cd $LOCAL && ls'
 alias todo='touch $LOCAL/dox/todo.md && nvim $LOCAL/dox/todo.md'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias reso='nvim $XDG_CONFIG_HOME/x11/xresources'
+alias i3fg='nvim $XDG_CONFIG_HOME/i3/config'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
+alias startx='startx > /dev/null 2>&1'
 
 # git branch
 function parse_git_branch() {
@@ -174,4 +177,3 @@ passgen() {
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
 clear
-

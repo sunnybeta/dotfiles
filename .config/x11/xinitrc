@@ -12,13 +12,16 @@ xsetroot -name "☃"
 unclutter -root -idle 3 &
 
 # # Set Wallpaper
-feh --no-fehbg --bg-scale $XDG_CONFIG_HOME/wallpaper
+feh --no-fehbg --bg-scale $XDG_CONFIG_HOME/wallpaper/img
  
 # Restore AlsaMixer Settings
 alsactl --file $XDG_CONFIG_HOME/alsa/asound.state restore
 
 # Load X Resources
 xrdb -load $XDG_CONFIG_HOME/x11/xresources
+
+# Startup Sound
+mpv $XDG_CONFIG_HOME/x11/startup.mp3
 
 # Start X
 exec $WM > /dev/null 2>&1
