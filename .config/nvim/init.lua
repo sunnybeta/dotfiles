@@ -27,7 +27,7 @@ vim.opt.autoindent = true
 vim.opt.background = 'dark'
 vim.opt.backspace = 'start,eol,indent'
 vim.opt.breakindent = true
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.cursorline = false
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -139,15 +139,16 @@ require'lazy'.setup({
 		lazy=false,
 	},
 	{
-		'vimwiki/vimwiki',
-		lazy=false,
-	}
+		'norcalli/nvim-colorizer.lua',
+		lazy=true,
+	},
 })
 vim.cmd.colorscheme 'icecream'
 vim.api.nvim_set_hl(0, 'Normal',      { bg = 'None' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'None' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'None' })
 
+require'colorizer'.setup()
 require'lualine'.setup({
 	options = {
 		icons_enabled = true,
@@ -289,14 +290,14 @@ require'lspconfig'.html.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
-require'lspconfig'.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-require'lspconfig'.tailwindcss.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+-- require'lspconfig'.tsserver.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- require'lspconfig'.tailwindcss.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
 require'lspconfig'.volar.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
