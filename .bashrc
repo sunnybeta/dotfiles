@@ -9,9 +9,9 @@
 [[ $- != *i* ]] && return
 
 # Basic
-export BROWSER=firefox
-export TERMINAL=urxvt
-export WM=i3
+export BROWSER=vivaldi
+export TERMINAL=kitty
+export WM=hyprland
 export EDITOR=nvim
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=1000
@@ -32,26 +32,23 @@ export XDG_CONFIG_DIRS=/etc/xdg
 
 # Derived
 export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
-export ENV=$HOME/.bashrc
 export FEHBG_HOME=$XDG_CONFIG_HOME/fehbg
 export HISTFILE=$XDG_STATE_HOME/bash/history
 export PROJECT_HOME=$LOCAL/poj
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
-export XAUTHORITY=$XDG_CONFIG_HOME/x11/xauthority
-export XINITRC=$XDG_CONFIG_HOME/x11/xinitrc
 export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
 export JAVA_HOME=/usr
 export CARGO_HOME=$XDG_CONFIG_HOME/cargo
 export RUSTUP_HOME=$XDG_CONFIG_HOME/rustup
-# export GHCUP_HOME=$HOME/.ghcup
+export GHCUP_HOME=$HOME/.ghcup
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Rust
-source $CARGO_HOME/env
+# source $CARGO_HOME/env
 
 # Haskell
 # source $GHCUP_HOME/env
@@ -64,8 +61,8 @@ PATH=$PATH:/usr/local/go/bin
 export PATH
 
 # Git
-git config --global color.ui true
-git config --global format.pretty oneline
+# git config --global color.ui true
+# git config --global format.pretty oneline
 
 # vim
 set -o vi
@@ -73,11 +70,11 @@ set -o vi
 # alias
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
 alias ls='ls --color=auto --group-directories-first'
-alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now'
+# alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now' # add to hyprland configuration
 alias mount='sudo mount'
 alias umount='sudo umount'
 alias pacman='sudo pacman'
-alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
+# alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
 alias make='clear && make'
 alias graph='git log --all --oneline --decorate --graph'
 alias dox='cd $LOCAL/dox'
@@ -87,12 +84,11 @@ alias vid='cd $LOCAL/vid'
 alias wrk='cd $LOCAL/wrk'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
-alias todo='touch $LOCAL/dox/todo.md && nvim $LOCAL/dox/todo.md'
+alias todo='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'
+alias goals='touch $LOCAL/dox/goals && nvim $LOCAL/dox/goals'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
-alias reso='nvim $XDG_CONFIG_HOME/x11/xresources'
-alias i3fg='nvim $XDG_CONFIG_HOME/i3/config'
+alias hypr='nvim $XDG_CONFIG_HOME/hypr/hyprland.conf'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
-alias startx='startx > /dev/null 2>&1'
 
 # git branch
 function parse_git_branch() {
@@ -142,7 +138,7 @@ function parse_git_dirty {
 }
 
 # prompt
-export PS1="\[\e[1;30m\][\[\e[1;32m\]\W\[\e[1;30m\]]\[\e[1;35m\]\`parse_git_branch\`\[\e[00m\] "
+export PS1="\[\e[1;32m\][\[\e[1;36m\]\u\[\e[1;35m\]@\[\e[1;34m\]\h \[\e[1;31m\]\W\[\e[1;32m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
 
 # autocomplete
 complete -cf sudo
@@ -150,12 +146,12 @@ complete -cf man
 
 # recursive grepper
 grepp() {
-	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/'
+	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
 }
 
 # recursive file grepper
 grepl() {
-	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/'
+	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
 }
 
 # download music
@@ -165,7 +161,7 @@ ytdl() {
 
 # SLOC
 clocc() {
-	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache'
+	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache,node_modules'
 }
 
 # password generator
