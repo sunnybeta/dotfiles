@@ -1,6 +1,6 @@
 # Sunny Beta's Dotfiles
 
-This repository consists of my Arch dotfiles.
+This repository consists of my dotfiles for Arch Linux.
 
 ## :scroll: Overview
 
@@ -28,7 +28,7 @@ This repository consists of my Arch dotfiles.
 > It is recommended to compile the programs you want from source.
 
 ```sh
-pacman -S git network-manager hyprland hyprpaper brightnessctl dunst rofi waybar ranger rofi-calc rofi-emoji ttf-fira-code ttf-iosevka-nerd ueberzug xdotool eww-git zathura-pdf-poppler mpd mpc ncmpcpp mpv pipewire wireplumber vivaldi kitty
+pacman -S git networkmanager hyprland hyprpaper brightnessctl dunst rofi waybar ranger zathura-pdf-poppler mpd mpc ncmpcpp mpv pipewire wireplumber vivaldi kitty unzip gimp btop figlet hyprlock neofetch ttf-cascadia-code
 ```
 
 ## :camera: Screenshots

@@ -1,14 +1,15 @@
 ##### directories ######
-ncmpcpp_directory = /home/sunny/.config/ncmpcpp
-lyrics_directory = /home/sunny/.config/ncmpcpp/.lyrics
+ncmpcpp_directory = /home/beta/.config/ncmpcpp
+lyrics_directory = /home/beta/.config/ncmpcpp/.lyrics
 
 ##### connection settings #####
 mpd_host = localhost
 mpd_port = 6600
 mpd_connection_timeout = 5
-mpd_music_dir = /home/sunny/.local/mix
+mpd_music_dir = /home/beta/.local/mix
 
 ##### music visualizer #####
+
 ## In order to make music visualizer work with MPD you need to use the fifo
 ## output. Its format parameter has to be set to 44100:16:1 for mono
 ## visualization or 44100:16:2 for stereo visualization. As an example here is
@@ -563,6 +564,3 @@ tags_separator = " | "
 #window_border_color = green
 #
 #active_window_border = red
-#
-#
-#

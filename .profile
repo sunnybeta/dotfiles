@@ -6,4 +6,3 @@
 # |_|                           
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-Hyprland

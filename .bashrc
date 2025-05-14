@@ -11,6 +11,7 @@
 # Basic
 export BROWSER=vivaldi
 export TERMINAL=kitty
+export TERM=xterm-256color
 export WM=hyprland
 export EDITOR=nvim
 export HISTCONTROL=ignoredups
@@ -138,7 +139,7 @@ function parse_git_dirty {
 }
 
 # prompt
-export PS1="\[\e[1;32m\][\[\e[1;36m\]\u\[\e[1;35m\]@\[\e[1;34m\]\h \[\e[1;31m\]\W\[\e[1;32m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
+export PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
 
 # autocomplete
 complete -cf sudo
