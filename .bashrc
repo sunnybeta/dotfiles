@@ -11,7 +11,7 @@
 # Basic
 export BROWSER=vivaldi
 export TERMINAL=kitty
-export TERM=xterm-256color
+export TERM=tmux-256color
 export WM=hyprland
 export EDITOR=nvim
 export HISTCONTROL=ignoredups
@@ -41,9 +41,18 @@ export PYTHONUSERBASE=$XDG_DATA_HOME/python
 export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
-export JAVA_HOME=/usr
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+export ANDROID_HOME=$LOCAL/opt/Android/Sdk
+export FLUTTER_HOME=$LOCAL/opt/Flutter
+export ANDROID_SDK_ROOT=$LOCAL/opt/Android/Sdk
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
+export JUPYTER_DATA_DIR=$XDG_DATA_HOME/jupyter
+export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export CARGO_HOME=$XDG_CONFIG_HOME/cargo
 export RUSTUP_HOME=$XDG_CONFIG_HOME/rustup
+export GOPATH=$XDG_DATA_HOME/go
 export GHCUP_HOME=$HOME/.ghcup
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -58,6 +67,9 @@ export LANG=en_US.UTF-8
 PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$BUN_INSTALL/bin
 PATH=$PATH:$LOCAL/bin
+PATH=$PATH:$JAVA_HOME/
+PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+PATH=$PATH:$FLUTTER_HOME/bin
 PATH=$PATH:/usr/local/go/bin
 export PATH
 
@@ -157,7 +169,7 @@ grepl() {
 
 # download music
 ytdl() {
-	$XDG_CONFIG_HOME/venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
+	$XDG_CONFIG_HOME/.venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
 }
 
 # SLOC
