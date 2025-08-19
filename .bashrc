@@ -17,6 +17,7 @@ export EDITOR=nvim
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=1000
 export HISTSIZE=1000
+export CHROME_EXECUTABLE=$BROWSER
 
 # XDG Specification
 
