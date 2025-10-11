@@ -87,7 +87,7 @@ alias ls='ls --color=auto --group-directories-first'
 # alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now' # add to hyprland configuration
 alias mount='sudo mount'
 alias umount='sudo umount'
-alias pacman='sudo pacman'
+alias dnf='sudo dnf'
 # alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
 alias make='clear && make'
 alias graph='git log --all --oneline --decorate --graph'
@@ -100,9 +100,11 @@ alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
 alias todo='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'
 alias goals='touch $LOCAL/dox/goals && nvim $LOCAL/dox/goals'
+alias dot='cd $LOCAL/projects/dotfiles'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias hypr='nvim $XDG_CONFIG_HOME/hypr/hyprland.conf'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
+alias neofetch='uwufetch'
 
 # git branch
 function parse_git_branch() {

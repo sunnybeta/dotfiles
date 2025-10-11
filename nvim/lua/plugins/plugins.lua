@@ -1,0 +1,147 @@
+return {}
+
+-- vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError', numhl = '' })
+-- vim.fn.sign_define('DiagnosticSignWarn',  { text = ' ', texthl = 'DiagnosticSignWarn',  numhl = '' })
+-- vim.fn.sign_define('DiagnosticSignHint',  { text = '󰠠 ', texthl = 'DiagnosticSignHint',  numhl = '' })
+-- vim.fn.sign_define('DiagnosticSignInfo',  { text = ' ', texthl = 'DiagnosticSignInfo',  numhl = '' })
+--
+-- vim.cmd 'au BufWritePost */xresources !xrdb -load %'
+-- vim.cmd 'au BufWritePost */.bashrc !source ~/.bashrc'
+--
+-- {
+-- 	'neovim/nvim-lspconfig',
+-- 	lazy=false,
+-- 	event = {'BufReadPre','BufNewFile'},
+-- 	dependencies = {
+-- 		'hrsh7th/nvim-cmp',
+-- 		'hrsh7th/cmp-nvim-lsp',
+-- 		'hrsh7th/cmp-buffer',
+-- 		'hrsh7th/cmp-path',
+-- 		'L3MON4D3/LuaSnip',
+-- 		'saadparwaiz1/cmp_luasnip',
+-- 	},
+-- },
+-- })
+-- 
+--
+-- require'telescope'.setup({
+-- 	defaults = {
+-- 		mappings = {
+-- 		  i = {
+-- 			['<C-u>'] = false,
+-- 			['<C-d>'] = false,
+-- 		  },
+-- 		},
+-- 	},
+-- 	extensions = {
+-- 		file_mappings = {
+-- 			hijack_netrw = true
+-- 		}
+-- 	},
+-- })
+--
+-- vim.keymap.set('n', '<leader>gf', require'telescope.builtin'.git_files,   { desc = '[S]earch Gi[T] Files'    })
+-- vim.keymap.set('n', '<leader>sf', require'telescope.builtin'.find_files,  { desc = '[S]earch [F]iles'        })
+-- vim.keymap.set('n', '<leader>sh', require'telescope.builtin'.help_tags,   { desc = '[S]earch [H]elp'         })
+-- vim.keymap.set('n', '<leader>sw', require'telescope.builtin'.grep_string, { desc = '[S]earch [W]ord'         })
+-- vim.keymap.set('n', '<leader>sg', require'telescope.builtin'.live_grep,   { desc = '[S]earch by [G]rep'      })
+-- vim.keymap.set('n', '<leader>sd', require'telescope.builtin'.diagnostics, { desc = '[S]earch [D]iagnostics'  })
+--
+--
+-- local cmp = require'cmp'
+-- cmp.setup({
+-- 	snippet = {
+-- 		expand = function(args)
+-- 			require'luasnip'.lsp_expand(args.body)
+-- 		end,
+-- 	},
+-- 	window = {
+-- 		completion = cmp.config.window.bordered(),
+-- 		documentation = cmp.config.window.bordered(),
+-- 	},
+-- 	mapping = cmp.mapping.preset.insert({
+-- 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+-- 		['<C-f>'] = cmp.mapping.scroll_docs(4),
+-- 		['<C-Space>'] = cmp.mapping.complete(),
+-- 		['<C-e>'] = cmp.mapping.abort(),
+-- 		['<CR>'] = cmp.mapping.confirm({ select = true }),
+-- 	}),
+-- 	sources = cmp.config.sources({
+-- 		{ name = 'nvim_lsp' },
+-- 		{ name = 'luasnip' },
+-- 	}, {
+-- 		{ name = 'buffer' },
+-- 	})
+-- })
+-- local capabilities = require'cmp_nvim_lsp'.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local on_attach = function()
+-- 	vim.keymap.set('n', 'gd',        vim.lsp.buf.   definition,      { buffer=0, desc='LSP: [G]oto [D]efinition'          })
+-- 	vim.keymap.set('n', 'K',         vim.lsp.buf.   hover,           { buffer=0, desc='LSP: Hover [I]nformation'          })
+-- 	vim.keymap.set('n', 'gt',        vim.lsp.buf.   type_definition, { buffer=0, desc='LSP: [G]oto [T]ype [D]efinition'   })
+-- 	vim.keymap.set('n', 'gi',        vim.lsp.buf.   implementation,  { buffer=0, desc='LSP: [G]oto [I]mplementation'      })
+-- 	vim.keymap.set('n', '<leader>r', vim.lsp.buf.   rename,          { buffer=0, desc='LSP: Rename Definition'            })
+-- 	vim.keymap.set('n', '<leader>c', vim.lsp.buf.   code_action,     { buffer=0, desc='LSP: [C]ode Action'                })
+-- 	vim.keymap.set('n', '[d',        vim.diagnostic.goto_prev,       { buffer=0, desc='Go To Previous Diagnostic Message' })
+-- 	vim.keymap.set('n', ']d',        vim.diagnostic.goto_next,       { buffer=0, desc='Go To Next Diagnostic Message'     })
+-- 	vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,      { buffer=0, desc='Open Floating Diagnostic Message'  })
+-- 	vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,      { buffer=0, desc='Open Diagnostics List'             })
+-- end
+-- vim.lsp.config('lua_ls',{
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		Lua = {
+-- 			diagnositcs = {
+-- 				globals = {'vim'}
+-- 			},
+-- 			workspace = {
+-- 				library = vim.api.nvim_get_runtime_file('', true),
+-- 			},
+-- 			telemetry = {
+-- 				enable = false,
+-- 			}
+-- 		}
+-- 	}
+-- })
+-- vim.lsp.config('pyright', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.config('cssls', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.config('gopls', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.config('rust_analyzer', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.config('jdtls', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.config('bashls', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.config('html', {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+-- -- require'lspconfig'.tsserver.setup({
+-- -- 	on_attach = on_attach,
+-- -- 	capabilities = capabilities,
+-- -- })
+-- -- require'lspconfig'.tailwindcss.setup({
+-- -- 	on_attach = on_attach,
+-- -- 	capabilities = capabilities,
+-- -- })
+-- im.lsp.config('clangd', {
+--  on_attach = on_attach,
+--  capabilities = capabilities,
+-- )
+-- 
+-- }

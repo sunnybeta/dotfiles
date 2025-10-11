@@ -21,5 +21,5 @@ vim.opt.rtp:prepend(lazypath)
 
 require 'global'
 require 'base'
-require'lazy'.setup('plugins')
 require 'maps'
+require'lazy'.setup('plugins')

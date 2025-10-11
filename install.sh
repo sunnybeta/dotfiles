@@ -3,6 +3,7 @@
 # Install Libraries
 sudo pacman -S ncmpcpp mpd mpc mpv vivaldi pipwire wireplumber hyprland hyprlock git python waybar tmux feh ranger zathura-pdf-poppler cmake btop dunst gcc hyprshot htop kitty less jq man-db npm steam gimp rofi-wayland ttf-cascadia-code brightnessctl unzip
 
+# sudo dnf -S ncmpcpp mpd mpc mpv firefox pipwire wireplumber pipewire-pulseaudio hyprland swaybg git python waybar tmux feh zathura-pdf-poppler cmake btop dunst gcc hyprshot htop kitty less tree jq man-db npm steam gimp rofi brightnessctl unzip NetworkManager-wifi
 
 # Config
 mkdir $HOME/.config
@@ -35,3 +36,5 @@ fc-cache
 
 
 echo "Install yt-dlp in a global new python environment"
+
+# Make sure to install NetworkManager-wifi for Fedora
