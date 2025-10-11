@@ -6,7 +6,7 @@ return  {
 	},
 	build = ':TSUpdate',
 	opts = {
-		ensure_installed = { 'c', 'cpp', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'typescript', 'python', 'markdown', 'bash', 'go', 'rust' },
+		ensure_installed = { 'c', 'cpp', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'typescript', 'python', 'markdown', 'bash', 'go', 'rust', 'jsonc' },
 		ignore_install = {},
 		modules = {},
 		sync_install = true,
