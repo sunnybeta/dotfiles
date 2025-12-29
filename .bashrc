@@ -47,6 +47,7 @@ export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export ANDROID_HOME=$LOCAL/opt/Android/Sdk
 export FLUTTER_HOME=$LOCAL/opt/Flutter
 export ANDROID_SDK_ROOT=$LOCAL/opt/Android/Sdk
+export WATERFOX_HOME=$LOCAL/opt/Waterfox
 export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 export JUPYTER_DATA_DIR=$XDG_DATA_HOME/jupyter
@@ -71,6 +72,8 @@ PATH=$PATH:$LOCAL/bin
 PATH=$PATH:$JAVA_HOME/
 PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 PATH=$PATH:$FLUTTER_HOME/bin
+PATH=$PATH:$WATERFOX_HOME/
+PATH=$PATH:$LOCAL/opt/zig
 PATH=$PATH:/usr/local/go/bin
 export PATH
 
@@ -83,13 +86,13 @@ set -o vi
 
 # alias
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
+alias air='$(go env GOPATH)/bin/air'
 alias ls='ls --color=auto --group-directories-first'
 # alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now' # add to hyprland configuration
 alias mount='sudo mount'
 alias umount='sudo umount'
 alias dnf='sudo dnf'
 # alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1'
-alias make='clear && make'
 alias graph='git log --all --oneline --decorate --graph'
 alias dox='cd $LOCAL/dox'
 alias pix='cd $LOCAL/pix'
@@ -105,6 +108,7 @@ alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias hypr='nvim $XDG_CONFIG_HOME/hypr/hyprland.conf'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
 alias neofetch='uwufetch'
+alias uv='~/.local/share/python/bin/uv'
 
 # git branch
 function parse_git_branch() {
@@ -154,7 +158,8 @@ function parse_git_dirty {
 }
 
 # prompt
-export PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
+# export PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
+export PS1="\[\e[1;31m\][\[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
 
 # autocomplete
 complete -cf sudo
@@ -172,7 +177,7 @@ grepl() {
 
 # download music
 ytdl() {
-	$XDG_CONFIG_HOME/.venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
+	$XDG_CONFIG_HOME/venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
 }
 
 # SLOC
@@ -189,3 +194,4 @@ passgen() {
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
 clear
+export ENV="dev"

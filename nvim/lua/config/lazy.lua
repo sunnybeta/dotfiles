@@ -16,7 +16,7 @@ require 'lazy'.setup({
 		{ import = 'plugins' },
 	},
 	ui = {
-		border = "single",
+		border = "double",
 		size = {
 			width = 0.7,
 			height = 0.7,
@@ -25,7 +25,7 @@ require 'lazy'.setup({
 	},
 	checker = {
 		enabled = true,
-		notify = true,
+		notify = false,
 	},
 	change_detection = {
 		notify = true,

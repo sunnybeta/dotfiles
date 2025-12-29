@@ -3,8 +3,7 @@ local set = vim.opt
 set.ai = true
 set.autoindent = true
 set.background = 'dark'
-set.background = 'dark'
-set.backspace = 'start,eol,indent'
+set.backspace = { "start", "eol", "indent" }
 set.breakindent = true
 set.breakindent = true
 set.clipboard = 'unnamedplus'
@@ -21,22 +20,21 @@ set.incsearch = true
 set.laststatus = 2
 set.linebreak = true
 set.list = true
-set.listchars = { eol = '¬', tab = '┊ '}
+set.listchars = { eol = '¬', tab = '▸ '}
 set.number = true -- Make line numbers default
 set.path:append { '**' }
 set.pumblend = 5
 set.relativenumber = true -- Set relative numbered line
 set.scrolloff = 2
 set.shell = 'bash'
-set.shiftwidth = 2
+set.shiftwidth = 4
 set.showcmd = true
 set.si = true
-set.signcolumn = 'no'
+set.signcolumn = 'yes'
 set.smartcase = true
 set.smarttab = false
-set.softtabstop = 2
-set.tabstop = 2
-set.termguicolors = true
+set.softtabstop = 4
+set.tabstop = 4
 set.termguicolors = true
 set.timeout = true
 set.timeoutlen = 300

@@ -6,7 +6,6 @@
 --                                    
 
 require("config.base")
-require("config.diagnostics")
 require("config.global")
-require("config.lazy")
 require("config.maps")
+require("config.lazy")

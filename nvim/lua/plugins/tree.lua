@@ -15,6 +15,5 @@ return {
 			},
 		},
 	},
-	-- Maps
 	vim.keymap.set('n', '<C-n>', ":NvimTreeToggle<CR>"),
 }

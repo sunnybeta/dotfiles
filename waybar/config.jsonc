@@ -34,7 +34,7 @@
 		}
 	},
 	"hyprland/window": {
-		"format": "<span color='#000000' bgcolor='#ff78c6' > 󰣆 </span> {class}",
+		"format": "<span color='#000000' bgcolor='#05a7aa' > 󰣆 </span> {class}",
 		"separate-outputs": true,
 		"icon": false,
 		"tooltip": false

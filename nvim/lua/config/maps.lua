@@ -1,6 +1,8 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+map('n', '<Space>of', ":lua vim.diagnostic.open_float()<CR>")
+
 -- special
 map('i', 'boxx', '☐')
 map('i', 'boxt', '☒')
