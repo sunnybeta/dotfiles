@@ -5,15 +5,10 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
-		require"todo-comments".setup({
+		require "todo-comments".setup({
 			keywords = {
-				FIX ={
-					icon = " ",
-					color = "error",
-					alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "REFACTOR" },
-					signs = false,
-				},
-				TODO = { icon = " ", color = "info" , alt = {"PERSONAL", "UPDATE"} },
+				FIX = { icon = " ", color = "error", alt = { "ISSUE", "REFACTOR" } },
+				TODO = { icon = " ", color = "info", alt = { "PERSONAL", "UPDATE" } },
 				HACK = { icon = " ", color = "warning", alt = { "DONT SKIP" } },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
 				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
@@ -22,28 +17,28 @@ return {
 				FORGETNOT = { icon = " ", color = "hint" },
 			},
 			highlight = {
-					multiline = true,
-					multiline_pattern = "^.",
-					multiline_context = 10,
-					before = "",
-					keyword = "bg",
-					after = "fg",
-					pattern = {
-							[[.*<(KEYWORDS)\s*:]], -- default pattern
-							[[.*<(KEYWORDS)\s*]], -- default pattern
-							[[<!--\s*(KEYWORDS)\s*:.*-->]], -- HTML comments with colon
-							[[<!--\s*(KEYWORDS)\s*.*-->]], -- HTML comments without colon
-					},
-					comments_only = false, -- highlighting outside of comments
+				multiline = true,
+				multiline_pattern = "^.",
+				multiline_context = 10,
+				before = "",
+				keyword = "bg",
+				after = "fg",
+				pattern = {
+					[[.*<(KEYWORDS)\s*:]], -- default pattern
+					[[.*<(KEYWORDS)\s*]], -- default pattern
+					[[<!--\s*(KEYWORDS)\s*:.*-->]], -- HTML comments with colon
+					[[<!--\s*(KEYWORDS)\s*.*-->]], -- HTML comments without colon
+				},
+				comments_only = false, -- highlighting outside of comments
 			},
 			search = {
 				command = "rg",
 				args = {
-						"--color=never",
-						"--no-heading",
-						"--with-filename",
-						"--line-number",
-						"--column",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
 				},
 				pattern = [[\b(KEYWORDS)\b]],
 			},

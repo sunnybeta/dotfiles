@@ -32,3 +32,27 @@ map('n','<Up>',':resize -2<CR>',opts)
 map('n','<Down>',':resize +2<CR>',opts)
 map('n','<Left>',':vertical resize -2<CR>',opts)
 map('n','<Right>',':vertical resize +2<CR>',opts)
+
+-- conceal
+-- local concealer = {
+-- 	{ "LambdaConceal", "/lambda/", "λ" },
+-- 	-- { "UncheckBoxConceal", "/- [ ] /", "☐ " },
+-- 	-- { "CheckBoxConceal", "/- [X] /", "☒ " },
+-- 	-- { "EquivalentConceal", "/==/", "≡" },
+-- 	-- { "RightArrowConceal", "/->/", "→" },
+-- 	-- { "LeftArrowConceal", "/<-/", "←" },
+-- 	-- { "ImpliesConceal", "/=>/", "⇒"},
+-- 	-- { "PlusMinusConceal", "/+-/", "±" },
+-- 	-- { "InConceal", "/ in /", "∈" },
+-- 	-- { "NotInConceal", "/ not in /", "∉" },
+-- 	-- { "NotEqualConceal", "/!=/", "≠" },
+-- 	-- { "LessThanConceal", "/<=/", "≤" },
+-- 	-- { "GreaterThanConceal", "/>=/", "≥" },
+-- 	-- { "FunctionsPyConceal", "/def /", "ƒ" },
+-- 	-- { "FunctionGoConceal", "/func /", "ƒ" },
+-- 	{ "FunctionRsConceal", "/fn /", "ƒ" },
+-- }
+-- for _, conceal in ipairs(concealer) do
+-- 	local group, regex, cchar = table.unpack(conceal)
+-- 	vim.api.nvim_command(string.format("syntax on | syntax match %s %s conceal cchar=%s", group, regex, cchar))
+-- end

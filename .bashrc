@@ -65,6 +65,9 @@ export LANG=en_US.UTF-8
 # Haskell
 # source $GHCUP_HOME/env
 
+# Ocaml
+test -r '/home/beta/.opam/opam-init/init.sh' && . '/home/beta/.opam/opam-init/init.sh' > /dev/null 2> /dev/null || true
+
 # Path
 PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$BUN_INSTALL/bin
@@ -98,7 +101,7 @@ alias dox='cd $LOCAL/dox'
 alias pix='cd $LOCAL/pix'
 alias mix='cd $LOCAL/mix'
 alias vid='cd $LOCAL/vid'
-alias wrk='cd $LOCAL/wrk'
+# alias wrk='cd $LOCAL/wrk'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
 alias todo='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'

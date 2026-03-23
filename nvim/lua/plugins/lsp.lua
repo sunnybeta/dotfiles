@@ -224,7 +224,7 @@ return {
 			},
 		})
 
-		vim.lsp.enable('luals')
+		-- vim.lsp.enable('luals')
 		vim.lsp.enable('html')
 		vim.lsp.enable('gopls')
 		vim.lsp.enable('zls')
