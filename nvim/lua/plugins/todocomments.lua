@@ -8,7 +8,7 @@ return {
 		require "todo-comments".setup({
 			keywords = {
 				FIX = { icon = " ", color = "error", alt = { "ISSUE", "REFACTOR" } },
-				TODO = { icon = " ", color = "info", alt = { "PERSONAL", "UPDATE" } },
+				TODO = { icon = " ", color = "info", alt = { "UPDATE" } },
 				HACK = { icon = " ", color = "warning", alt = { "DONT SKIP" } },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
 				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },

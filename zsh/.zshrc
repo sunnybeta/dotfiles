@@ -1,12 +1,4 @@
-#  _               _              
-# | |__   __ _ ___| |__  _ __ ___ 
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__ 
-# |_.__/ \__,_|___/_| |_|_|  \___|
-#                                 
-
-# if not interactive, dont do anything
-[[ $- != *i* ]] && return
+#!/bin/sh
 
 # Basic
 export BROWSER=vivaldi
@@ -59,9 +51,6 @@ export GHCUP_HOME=$HOME/.ghcup
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# Ocaml
-test -r '/home/beta/.opam/opam-init/init.sh' && . '/home/beta/.opam/opam-init/init.sh' > /dev/null 2> /dev/null || true
-
 # Path
 PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$BUN_INSTALL/bin
@@ -73,8 +62,35 @@ PATH=$PATH:$WATERFOX_HOME/
 PATH=$PATH:/usr/local/go/bin
 export PATH
 
-# vim
-set -o vi
+
+setopt PROMPT_SUBST
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b '
+
+NEWLINE=$'\n'
+# PROMPT="%K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %F{red}${vcs_info_msg_0_}%f%k${NEWLINE} λ "
+PROMPT="%F{green} %n %F{red}%~ %F{red}${vcs_info_msg_0_}%f%k${NEWLINE} %F{yellow}λ %f%k"
+# History Cache
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Vim Mode
+bindkey -v
+export KEYTIMEOUT=1
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/beta/.config/zsh/.zshrc'
+
+# End of lines added by compinstall
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+_comp_options+=(globdots)
+compinit
+
+unsetopt autocd nomatch
+unsetopt LIST_BEEP
 
 # alias
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
@@ -101,62 +117,6 @@ alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
 alias neofetch='uwufetch'
 alias uv='~/.local/share/python/bin/uv'
 
-# git branch
-function parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
-		echo "(${BRANCH}${STAT})"
-	else
-		echo ""
-	fi
-}
-
-# git status
-function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
-	if [ "${renamed}" == "0" ]; then
-		bits="± ${bits}"
-	fi
-	if [ "${ahead}" == "0" ]; then
-		bits="󰠠 ${bits}"
-	fi
-	if [ "${newfile}" == "0" ]; then
-		bits=" ${bits}"
-	fi
-	if [ "${untracked}" == "0" ]; then
-		bits="≡ ${bits}"
-	fi
-	if [ "${deleted}" == "0" ]; then
-		bits=" ${bits}"
-	fi
-	if [ "${dirty}" == "0" ]; then
-		bits=" ${bits}"
-	fi
-	if [ ! "${bits}" == "" ]; then
-		echo " ${bits}"
-	else
-		echo ""
-	fi
-}
-
-# prompt
-# export PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
-export PS1="\[\e[1;31m\][\[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
-
-# autocomplete
-complete -cf sudo
-complete -cf man
-
-# recursive grepper
 grepp() {
 	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
 }
@@ -185,4 +145,3 @@ passgen() {
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
 clear
-export ENV="dev"

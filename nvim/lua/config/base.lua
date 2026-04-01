@@ -9,7 +9,7 @@ set.breakindent = true
 set.clipboard = 'unnamedplus'
 set.cmdheight = 1
 set.completeopt = 'menu,menuone,noselect'
-set.conceallevel = 2
+set.conceallevel = 0
 set.concealcursor = 'nc'
 set.cursorline = false
 set.encoding = 'utf-8'
@@ -22,7 +22,7 @@ set.incsearch = true
 set.laststatus = 2
 set.linebreak = true
 set.list = true
-set.listchars = { eol = '¬', tab = '▸ '}
+set.listchars = { eol = '¬', tab = '▸ ' }
 set.number = true -- Make line numbers default
 set.path:append { '**' }
 set.pumblend = 5

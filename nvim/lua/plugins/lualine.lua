@@ -16,10 +16,10 @@ return {
 				"diagnositcs",
 				{
 					"buffers",
-					buffers_color = {
-						active = { bg = '#FF78C6', fg = '#000000', gui = "bold" },
-						inactive = { bg = '#000000', fg = '#D3C0AC', gui = "italic" },
-					},
+					-- buffers_color = {
+					-- 	active = { bg = '#FF78C6', fg = '#000000', gui = "bold" },
+					-- 	inactive = { bg = '#000000', fg = '#D3C0AC', gui = "italic" },
+					-- },
 					symbols = {
 						modified = " ●",
 						alternate_file = "",
@@ -27,7 +27,7 @@ return {
 					},
 					mode = 2,
 				},
-				{ "filename", path = 1 },
+				{ "filename", path = 0 },
 			},
 			lualine_x = { "filesize" },
 			lualine_y = { "searchcount", "filetype", "selectioncount" },

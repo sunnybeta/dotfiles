@@ -1,10 +1,10 @@
 return {
-	dir = '~/.local/projects/liminalminds/eleven59-neovim',
-	name = 'eleven59',
+	dir = '~/.local/projects/icecreamtheme/neovim',
+	name = 'icecream',
 	branch = 'dev',
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd.colorscheme 'eleven59'
+		vim.cmd.colorscheme 'icecream'
 	end
 }
