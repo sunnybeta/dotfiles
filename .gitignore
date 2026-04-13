@@ -9,3 +9,10 @@ lazy-lock.json
 
 # Ncmpcpp
 error.log
+
+# ZSH
+zsh/.zcompdump
+
+# MPD
+mpd/*
+!mpd/mpd.conf

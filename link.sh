@@ -9,6 +9,9 @@ rm $HOME/.bash_profile
 ln -s $HOME/.local/projects/dotfiles/.bashrc  $HOME/.bashrc
 ln -s $HOME/.local/projects/dotfiles/.profile $HOME/.profile
 
+# Zshrc
+ln -s $HOME/.local/projects/dotfiles/zsh  $HOME/.config/zsh
+
 # Check additional directories
 mkdir -p $HOME/.config
 mkdir -p $HOME/.local/share
@@ -23,6 +26,7 @@ ln -s $HOME/.local/projects/tmux    $HOME/.config/tmux
 ln -s $HOME/.local/projects/git     $HOME/.config/git
 ln -s $HOME/.local/projects/nvim    $HOME/.config/nvim
 
+# Local
 ln -s $HOME/.local/projects/bin    $HOME/.local/bin
 ln -s $HOME/.local/projects/fonts  $HOME/.local/share/fonts
 

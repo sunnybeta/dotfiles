@@ -7,7 +7,7 @@ return {
 			theme                = 'auto',
 			icons_enabled        = true,
 			component_separators = { left = '', right = '' },
-			section_separators   = { left = '::', right = '::' },
+			section_separators   = { left = '', right = '' },
 		},
 		sections = {
 			lualine_a = { "mode" },
@@ -15,7 +15,7 @@ return {
 			lualine_c = {
 				"diagnositcs",
 				{
-					"buffers",
+					-- "buffers",
 					-- buffers_color = {
 					-- 	active = { bg = '#FF78C6', fg = '#000000', gui = "bold" },
 					-- 	inactive = { bg = '#000000', fg = '#D3C0AC', gui = "italic" },

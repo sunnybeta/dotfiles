@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Basic
-export BROWSER=vivaldi
+export BROWSER=firefox
 export TERMINAL=kitty
 export TERM=tmux-256color
 export WM=hyprland
@@ -34,7 +34,8 @@ export PYTHONUSERBASE=$XDG_DATA_HOME/python
 export npm_config_cache=$XDG_CACHE_HOME/npm
 export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
 export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export ANDROID_HOME=$LOCAL/opt/Android/Sdk
 export FLUTTER_HOME=$LOCAL/opt/Flutter
@@ -60,6 +61,7 @@ PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 PATH=$PATH:$FLUTTER_HOME/bin
 PATH=$PATH:$WATERFOX_HOME/
 PATH=$PATH:/usr/local/go/bin
+PATH=$PATH:$HOME/.opencode/bin
 export PATH
 
 
@@ -108,7 +110,7 @@ alias mix='cd $LOCAL/mix'
 alias vid='cd $LOCAL/vid'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
-alias todo='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'
+alias greatest='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'
 alias goals='touch $LOCAL/dox/goals && nvim $LOCAL/dox/goals'
 alias dot='cd $LOCAL/projects/dotfiles'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
