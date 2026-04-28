@@ -1,7 +1,8 @@
 return {
-	dir = '~/.local/projects/icecreamtheme/neovim',
+	"icecreamtheme/neovim",
+	-- dir = '~/.local/projects/icecreamtheme/neovim',
 	name = 'icecream',
-	branch = 'dev',
+	-- branch = 'dev',
 	lazy = false,
 	priority = 1000,
 	config = function()

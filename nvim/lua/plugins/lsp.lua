@@ -14,11 +14,10 @@ return {
 	lazy = false,
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
-
 		-- MASON
-		require'mason'.setup({
-			ui={
-				icons={
+		require 'mason'.setup({
+			ui = {
+				icons = {
 					package_installed   = '✓',
 					package_pending     = '󰠠',
 					package_uninstalled = '',
@@ -32,25 +31,25 @@ return {
 		})
 
 		-- MASON LSP INSTALLATIONS
-		require'mason-lspconfig'.setup({
+		require 'mason-lspconfig'.setup({
 			ensure_installed = {
-			 'clangd',
-			 'cssls',
-			 'gopls',
-			 'html',
-			 'elixirls',
-			 'lua_ls',
-			 'pyright',
-			 'rust_analyzer',
-			 'tailwindcss',
-			 'zls',
-			 'marksman',
+				'clangd',
+				'cssls',
+				'gopls',
+				'html',
+				'elixirls',
+				'lua_ls',
+				'pyright',
+				'rust_analyzer',
+				'tailwindcss',
+				'zls',
+				'marksman',
 			},
 			automatic_installation = true,
 		})
 
 		-- CMP
-		local cmp = require'cmp'
+		local cmp = require 'cmp'
 		local lsp_kinds = {
 			Text = '󰉿',
 			Method = '󰆧',
@@ -89,15 +88,15 @@ return {
 			},
 			window = {
 				documentation = {
-					 border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+					border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
 				},
 				completion = {
-					 border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+					border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
 				},
 			},
 			snippet = {
 				expand = function(args)
-					require'luasnip'.lsp_expand(args.body)
+					require 'luasnip'.lsp_expand(args.body)
 				end,
 			},
 			sources = cmp.config.sources({
@@ -130,7 +129,7 @@ return {
 			},
 		})
 		-- CONFIGURE SERVERS
-		local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+		local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 		vim.lsp.config('*', { capabilities = capabilities })
 		vim.api.nvim_create_autocmd('LspAttach', {
 			group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -162,10 +161,10 @@ return {
 				vim.keymap.set('n', ' c', vim.lsp.buf.code_action, opts)
 
 				opts.desc = 'Go To Previous Diagnostic Message'
-				vim.keymap.set('n', '[d', function() vim.diagnostic.jump({count = -1}) end, opts)
+				vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, opts)
 
 				opts.desc = 'Go To Next Diagnostic Message'
-				vim.keymap.set('n', ']d', function () vim.diagnostic.jump({count = 1}) end, opts)
+				vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, opts)
 
 				opts.desc = '[O]pen [F]loating Diagnostic Message'
 				vim.keymap.set('n', ' e', vim.diagnostic.open_float, opts)
@@ -204,7 +203,7 @@ return {
 			settings = {
 				Lua = {
 					diagnostics = {
-						globals = {'vim'},
+						globals = { 'vim' },
 					},
 					completion = {
 						callSnippet = 'Replace',

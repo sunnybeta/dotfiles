@@ -67,8 +67,9 @@ export PATH
 
 setopt PROMPT_SUBST
 autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%b '
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:git:*' formats '(%b)'
 
 NEWLINE=$'\n'
 # PROMPT="%K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %F{red}${vcs_info_msg_0_}%f%k${NEWLINE} λ "
