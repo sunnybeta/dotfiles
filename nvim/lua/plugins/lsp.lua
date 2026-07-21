@@ -44,6 +44,7 @@ return {
 				'tailwindcss',
 				'zls',
 				'marksman',
+				'ts_ls',
 			},
 			automatic_installation = true,
 		})
@@ -186,6 +187,7 @@ return {
 		vim.lsp.config('pyright', {})
 		vim.lsp.config('cssls', {})
 		vim.lsp.config('clangd', {})
+		vim.lsp.config('ts_ls', {})
 		vim.lsp.config('zls', {})
 		vim.lsp.config('gopls', {})
 		vim.lsp.config('html', {})
@@ -231,5 +233,6 @@ return {
 		vim.lsp.enable('cssls')
 		vim.lsp.enable('clangd')
 		vim.lsp.enable('tailwindcss')
+		vim.lsp.enable('ts_ls')
 	end
 }

@@ -64,16 +64,13 @@ PATH=$PATH:/usr/local/go/bin
 PATH=$PATH:$HOME/.opencode/bin
 export PATH
 
-
+# Prompt
 setopt PROMPT_SUBST
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:git:*' formats '(%b)'
-
+# autoload -Uz vcs_info
+# Git
 NEWLINE=$'\n'
-# PROMPT="%K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %F{red}${vcs_info_msg_0_}%f%k${NEWLINE} λ "
-PROMPT="%F{green} %n %F{red}%~ %F{red}${vcs_info_msg_0_}%f%k${NEWLINE} %F{yellow}λ %f%k"
+PROMPT='%F{green} %n %F{red}%~ %F{magenta}$(parse_git_branch)%f%k${NEWLINE} %F{yellow}λ %f%k'
+
 # History Cache
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=1000
@@ -117,16 +114,16 @@ alias dot='cd $LOCAL/projects/dotfiles'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
 alias hypr='nvim $XDG_CONFIG_HOME/hypr/hyprland.conf'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
-alias neofetch='uwufetch'
+alias neofetch='fastfetch'
 alias uv='~/.local/share/python/bin/uv'
 
 grepp() {
-	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
+	grep -ri $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
 }
 
 # recursive file grepper
 grepl() {
-	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
+	grep -ril $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
 }
 
 # download music
@@ -148,3 +145,51 @@ passgen() {
 	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
 }
 clear
+
+
+# git branch
+parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "(${BRANCH}${STAT})"
+	else
+		echo ""
+	fi
+}
+
+# git status
+parse_git_dirty() {
+	gs=$(git status 2>&1 | tee)
+	dirty=`echo -n "${gs}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${gs}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${gs}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${gs}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${gs}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${gs}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits="± ${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="󰠠 ${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits=" ${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="≡ ${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits=" ${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits=" ${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
+}

@@ -48,3 +48,24 @@ set.wildoptions = 'pum'
 set.winblend = 0
 set.winborder = 'rounded'
 set.wrap = true
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typescriptreact",
+	callback = function()
+		set.expandtab = true -- Use spaces instead of tabs
+		set.shiftwidth = 2 -- Size of an indent
+		set.tabstop = 2 -- Number of spaces tabs count for
+		set.softtabstop = 2 -- Number of spaces for a tab while editing
+	end,
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "dart",
+	callback = function()
+		set.expandtab = true -- Use spaces instead of tabs
+		set.shiftwidth = 2 -- Size of an indent
+		set.tabstop = 2 -- Number of spaces tabs count for
+		set.softtabstop = 2 -- Number of spaces for a tab while editing
+	end,
+})
