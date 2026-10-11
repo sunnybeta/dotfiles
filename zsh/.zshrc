@@ -60,6 +60,7 @@ PATH=$PATH:$JAVA_HOME/
 PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 PATH=$PATH:$FLUTTER_HOME/bin
 PATH=$PATH:$WATERFOX_HOME/
+PATH=$PATH:$GOPATH/bin
 PATH=$PATH:/usr/local/go/bin
 PATH=$PATH:$HOME/.opencode/bin
 export PATH
@@ -109,6 +110,7 @@ alias vid='cd $LOCAL/vid'
 alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
 alias greatest='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'
+alias todo='nvim todo'
 alias goals='touch $LOCAL/dox/goals && nvim $LOCAL/dox/goals'
 alias dot='cd $LOCAL/projects/dotfiles'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
@@ -118,12 +120,12 @@ alias neofetch='fastfetch'
 alias uv='~/.local/share/python/bin/uv'
 
 grepp() {
-	grep -ri $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
+	grep -ri $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/' --exclude-dir='dist/'
 }
 
 # recursive file grepper
 grepl() {
-	grep -ril $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
+	grep -ril $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/' --exclude-dir='dist/'
 }
 
 # download music
@@ -133,7 +135,7 @@ ytdl() {
 
 # SLOC
 clocc() {
-	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache,node_modules'
+	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache,node_modules,.next'
 }
 
 # password generator
@@ -193,3 +195,6 @@ parse_git_dirty() {
 		echo ""
 	fi
 }
+
+# bun completions
+[ -s "/home/beta/.config/bun/_bun" ] && source "/home/beta/.config/bun/_bun"
