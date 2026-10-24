@@ -49,11 +49,11 @@
 		"spacing": 8
 	},
 	"disk": {
-		"format": "<span bgcolor='#000000' color='#05a7aa' >  </span> {free}",
+		"format": "<span bgcolor='#15111F' color='#145B77' >  </span> {free}",
 		"interval": 20
 	},
 	"cpu": {
-		"format": "<span bgcolor='#000000' color='#b973e2' >  </span> {usage}%",
+		"format": "<span bgcolor='#15111F' color='#AD66D0' >  </span> {usage}%",
 		"tooltip": false,
 		"interval": 1
 	},
@@ -63,20 +63,19 @@
 		"interval": 2,
 		"tooltip": false,
 		"critical-threshold": 70,
-		"format": "<span bgcolor='#000000' color='#f6e377'> 󰴈 </span> {}",
-		"format-critical": "<span bgcolor='#000000' color='#f00359' >  </span> {}"
+		"format": "<span bgcolor='#15111F' color='#FFAF6B'> 󰴈 </span> {}",
+		"format-critical": "<span bgcolor='#15111F' color='#E275B4' >  </span> {}"
 	},
 	"custom/memory": {
 		"exec": "~/.config/waybar/scripts/memory.sh",
 		"interval": 2,
 		"return-type": "json",
-		"format": "<span bgcolor='#000000' color='#206bc4' >  </span> {}"
+		"format": "<span bgcolor='#15111F' color='#00396E' >  </span> {}"
 	},
 	"pulseaudio": {
-		"format": "<span bgcolor='#000000' color='#f85452' >  </span> {volume}%",
-		"format-muted": "<span bgcolor='#000000' color='#f00359' >  </span> {volume}%",
-		"format-bluetooth": "<span bgcolor='#000000' color='#f85452' > 󰂰 </span> {volume}%",
-		"format-bluetooth-muted": "<span bgcolor='#000000' color='#f00359' > 󰂲 </span> {volume}%",
+		"format": "<span bgcolor='#15111F' color='#DB6E36' >  </span> {volume}%",
+		"format-muted": "<span bgcolor='#15111F' color='#E275B4' >  </span> {volume}%",
+		"format-bluetooth": "<span bgcolor='#15111F' color='#DB6E36' > 󰂰 </span> {volume}%",
 		"format-source": "{volume}% ",
 		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"on-click-right": "pavucontrol",
@@ -85,9 +84,9 @@
 	},
 	"network": {
 		"interval": 5,
-		"format": "<span bgcolor='#000000' color='#ff78c6'> 󱘖 </span> {bandwidthDownBits}",
-		"format-wifi": "<span bgcolor='#000000' color='#ff78c6'> {icon} </span> {bandwidthDownBits}",
-		"format-ethernet": "<span bgcolor='#000000' color='#ff78c6'> 󰈀 </span> {bandwidthDownBits}",
+		"format": "<span bgcolor='#15111F' color='#D36DD8' > 󱘖 </span> {bandwidthDownBits}",
+		"format-wifi": "<span bgcolor='#15111F' color='#D36DD8' > {icon} </span> {bandwidthDownBits}",
+		"format-ethernet": "<span bgcolor='#15111F' color='#D36DD8' > 󰈀 </span> {bandwidthDownBits}",
 		"format-icons": [
 			"󰤫",
 			"󰤟",
@@ -101,7 +100,7 @@
 		}
 	},
 	"clock": {
-		"format": "<span bgcolor='#000000' color='#4ba560' >  </span> {:%a %d %b %H:%M:%S}",
+		"format": "<span bgcolor='#15111F' color='#19A385' >  </span> {:%a %d %b %H:%M:%S}",
 		"tooltip": false,
 		"interval": 1
 	},
@@ -113,15 +112,15 @@
 			"critical": 5
 		},
 		"format-icons": ["󰂎","󰁺","󰁻","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
-		"format": "<span bgcolor='#000000' color='#4ba560' > {icon} </span> {capacity}%",
-		"format-critical": "<span bgcolor='#000000' color='#f00359' > {icon} </span> {capacity}%!!",
-		"format-warning": "<span bgcolor='#000000' color='#f6e377' > {icon} </span> {capacity}%",
-		"format-full": "<span bgcolor='#000000' color='#4ba560' > {icon} </span> {capacity}%",
-		"format-charging": "<span bgcolor='#000000' color='#4ba560' > 󰂅 </span> {capacity}%",
-		"format-charging-warning": "<span bgcolor='#000000' color='#f6e377' > 󰢝 </span> {capacity}%",
-		"format-charging-critical": "<span bgcolor='#000000' color='#f00359' > 󰢜 </span> {capacity}%",
-		"format-plugged": "<span bgcolor='#000000' color='#4ba560' > 󰂅 </span> {capacity}%",
-		"format-alt": "<span bgcolor='#000000' color='#4ba560' > 󱧥 </span> {time}",
+		"format": "<span bgcolor='#15111F' color='#19A385' > {icon} </span> {capacity}%",
+		"format-critical": "<span bgcolor='#15111F' color='#E275B4' > {icon} </span> {capacity}%!!",
+		"format-warning": "<span bgcolor='#15111F' color='#DB6E36' > {icon} </span> {capacity}%",
+		"format-full": "<span bgcolor='#15111F' color='#19A385' > {icon} </span> {capacity}%",
+		"format-charging": "<span bgcolor='#15111F' color='#19A385' > 󰂅 </span> {capacity}%",
+		"format-charging-warning": "<span bgcolor='#15111F' color='#DB6E36' > {icon} </span> {capacity}%",
+		"format-charging-critical": "<span bgcolor='#15111F' color='#E275B4' > {icon} </span> {capacity}%",
+		"format-plugged": "<span bgcolor='#15111F' color='#19A385' > 󰂅 </span> {capacity}%",
+		"format-alt": "<span bgcolor='#15111F' color='#19A385' > 󱧥 </span> {time}",
 		"tooltip": false
 	}
 }

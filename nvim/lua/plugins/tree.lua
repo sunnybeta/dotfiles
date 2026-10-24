@@ -3,17 +3,19 @@ return {
 	dependencies = {
 		'nvim-tree/nvim-web-devicons',
 	},
-	opts = {
-		filters = { dotfiles = false },
-		diagnostics = { enable = true },
-		renderer = {
-			indent_markers = { enable = true },
-			icons = {
-				show = {
-					folder_arrow = false,
+	config = function()
+		require "nvim-tree".setup({
+			filters = { dotfiles = false },
+			diagnostics = { enable = true },
+			renderer = {
+				indent_markers = { enable = true },
+				icons = {
+					show = {
+						folder_arrow = false,
+					},
 				},
 			},
-		},
-	},
-	vim.keymap.set('n', '<C-n>', ":NvimTreeToggle<CR>"),
+		})
+		vim.keymap.set('n', '<C-n>', ":NvimTreeToggle<CR>")
+	end
 }

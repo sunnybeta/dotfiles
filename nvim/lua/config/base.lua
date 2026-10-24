@@ -35,8 +35,8 @@ set.si = true
 set.signcolumn = 'yes'
 set.smartcase = true
 set.smarttab = false
-set.softtabstop = 4
-set.tabstop = 4
+set.softtabstop = 2
+set.tabstop = 2
 set.termguicolors = true
 set.timeout = true
 set.timeoutlen = 300
@@ -61,6 +61,17 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 vim.api.nvim_create_autocmd("FileType", {
+	pattern = "javascriptreact",
+	callback = function()
+		set.expandtab = true -- Use spaces instead of tabs
+		set.shiftwidth = 2 -- Size of an indent
+		set.tabstop = 2 -- Number of spaces tabs count for
+		set.softtabstop = 2 -- Number of spaces for a tab while editing
+	end,
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = "dart",
 	callback = function()
 		set.expandtab = true -- Use spaces instead of tabs
@@ -68,4 +79,30 @@ vim.api.nvim_create_autocmd("FileType", {
 		set.tabstop = 2 -- Number of spaces tabs count for
 		set.softtabstop = 2 -- Number of spaces for a tab while editing
 	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "javascript",
+	callback = function()
+		set.expandtab = true -- Use spaces instead of tabs
+		set.shiftwidth = 2 -- Size of an indent
+		set.tabstop = 2 -- Number of spaces tabs count for
+		set.softtabstop = 2 -- Number of spaces for a tab while editing
+	end,
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typescript",
+	callback = function()
+		set.expandtab = true -- Use spaces instead of tabs
+		set.shiftwidth = 2 -- Size of an indent
+		set.tabstop = 2 -- Number of spaces tabs count for
+		set.softtabstop = 2 -- Number of spaces for a tab while editing
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "*.html",
+	command = "set filetype=html",
 })

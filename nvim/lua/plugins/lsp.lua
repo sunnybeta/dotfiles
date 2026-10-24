@@ -191,6 +191,7 @@ return {
 		vim.lsp.config('zls', {})
 		vim.lsp.config('gopls', {})
 		vim.lsp.config('html', {})
+		vim.lsp.config('rust_analyzer', {})
 
 		vim.lsp.config('tailwindcss', {
 			tailwindCSS = {
@@ -234,5 +235,6 @@ return {
 		vim.lsp.enable('clangd')
 		vim.lsp.enable('tailwindcss')
 		vim.lsp.enable('ts_ls')
+		vim.lsp.enable('rust_analyzer')
 	end
 }

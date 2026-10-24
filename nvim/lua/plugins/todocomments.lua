@@ -8,11 +8,11 @@ return {
 		require "todo-comments".setup({
 			keywords = {
 				FIX = { icon = " ", color = "error", alt = { "ISSUE", "REFACTOR" } },
-				TODO = { icon = " ", color = "info", alt = { "UPDATE" } },
+				TODO = { icon = " ", color = "info", alt = { "TODO" } },
 				HACK = { icon = " ", color = "warning", alt = { "DONT SKIP" } },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
 				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-				NOTE = { icon = " ", color = "hint", alt = { "INFO", "COLORS", "Custom" } },
+				NOTE = { icon = " ", color = "hint", alt = { "COLORS", "Custom" } },
 				TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 				FORGETNOT = { icon = " ", color = "hint" },
 			},
@@ -20,7 +20,7 @@ return {
 				multiline = true,
 				multiline_pattern = "^.",
 				multiline_context = 10,
-				before = "",
+				before = "fg",
 				keyword = "bg",
 				after = "fg",
 				pattern = {
