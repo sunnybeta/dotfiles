@@ -1,77 +1,16 @@
-#  _               _              
-# | |__   __ _ ___| |__  _ __ ___ 
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__ 
-# |_.__/ \__,_|___/_| |_|_|  \___|
-#                                 
+#!/bin/sh
 
-# if not interactive, dont do anything
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Basic
-export BROWSER=vivaldi
-export TERMINAL=kitty
-export TERM=tmux-256color
-export WM=hyprland
-export EDITOR=nvim
-export HISTCONTROL=ignoredups
-export HISTFILESIZE=1000
-export HISTSIZE=1000
-export CHROME_EXECUTABLE=$BROWSER
-
-# XDG Specification
-
-## User
-export LOCAL=$HOME/.local
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_STATE_HOME=$LOCAL/state
-export XDG_DATA_HOME=$LOCAL/share
-
-## System
-export XDG_DATA_DIRS=/usr/local/share:/usr/share
-export XDG_CONFIG_DIRS=/etc/xdg
-
-# Derived
-export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
-export FEHBG_HOME=$XDG_CONFIG_HOME/fehbg
-export HISTFILE=$XDG_STATE_HOME/bash/history
-export PROJECT_HOME=$LOCAL/poj
-export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
-export PYTHONUSERBASE=$XDG_DATA_HOME/python
-export npm_config_cache=$XDG_CACHE_HOME/npm
-export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
-export MPDCONF=$XDG_CONFIG_HOME/mpd/mpd.conf
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
-export ANDROID_HOME=$LOCAL/opt/Android/Sdk
-export FLUTTER_HOME=$LOCAL/opt/Flutter
-export ANDROID_SDK_ROOT=$LOCAL/opt/Android/Sdk
-export WATERFOX_HOME=$LOCAL/opt/Waterfox
-export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
-export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
-export JUPYTER_DATA_DIR=$XDG_DATA_HOME/jupyter
-export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
-export CARGO_HOME=$XDG_CONFIG_HOME/cargo
-export RUSTUP_HOME=$XDG_CONFIG_HOME/rustup
-export GOPATH=$XDG_DATA_HOME/go
-export GHCUP_HOME=$HOME/.ghcup
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Ocaml
-test -r '/home/beta/.opam/opam-init/init.sh' && . '/home/beta/.opam/opam-init/init.sh' > /dev/null 2> /dev/null || true
-
-# Path
-PATH=$PATH:$CARGO_HOME/bin
-PATH=$PATH:$BUN_INSTALL/bin
-PATH=$PATH:$LOCAL/bin
-PATH=$PATH:$JAVA_HOME/
-PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
-PATH=$PATH:$FLUTTER_HOME/bin
-PATH=$PATH:$WATERFOX_HOME/
-PATH=$PATH:/usr/local/go/bin
-export PATH
+# prompt 
+shopt -s promptvars
+CLR_GREEN="\[\e[32m\]"
+CLR_RED="\[\e[31m\]"
+CLR_MAGENTA="\[\e[35m\]"
+CLR_YELLOW="\[\e[33m\]"
+CLR_RESET="\[\e[0m\]"
+PS1="${CLR_GREEN} \u ${CLR_RED}\w ${CLR_MAGENTA}\$(parse_git_branch)${CLR_RESET}\n ${CLR_YELLOW}λ ${CLR_RESET}"
 
 # vim
 set -o vi
@@ -80,29 +19,52 @@ set -o vi
 alias pycc='rm -r __pycache__ */__pycache__ */*/__pycache__ >> /dev/null 2>&1'
 alias air='$(go env GOPATH)/bin/air'
 alias ls='ls --color=auto --group-directories-first'
-# alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now' # add to hyprland configuration
 alias mount='sudo mount'
 alias umount='sudo umount'
 alias dnf='sudo dnf'
-# alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1' # ubuntu
+alias pacman='sudo pacman'
 alias graph='git log --all --oneline --decorate --graph'
-alias dox='cd $LOCAL/dox'
-alias pix='cd $LOCAL/pix'
-alias mix='cd $LOCAL/mix'
-alias vid='cd $LOCAL/vid'
-alias poj='cd $LOCAL/poj'
 alias home='cd $LOCAL && ls'
-alias todo='touch $LOCAL/dox/todo && nvim $LOCAL/dox/todo'
-alias goals='touch $LOCAL/dox/goals && nvim $LOCAL/dox/goals'
-alias dot='cd $LOCAL/projects/dotfiles'
+alias todo='touch $LOCAL/Documents/todo && nvim $LOCAL/Documents/todo'
+alias dot='cd $HOME/.dots'
 alias vfg='nvim $XDG_CONFIG_HOME/nvim/init.lua'
-alias hypr='nvim $XDG_CONFIG_HOME/hypr/hyprland.conf'
+alias hypr='nvim $XDG_CONFIG_HOME/hypr/hyprland.lua'
 alias wget='wget --hsts-file $XDG_CONFIG_HOME/wget/hsts'
-alias neofetch='uwufetch'
 alias uv='~/.local/share/python/bin/uv'
+# alias byebye='mpv $XDG_CONFIG_HOME/x11/shutdown.mp3 > /dev/null && sudo shutdown now' # add to hyprland configuration
+# alias mpstrt='pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1' # ubuntu
+
+# grepper functions
+grepp() {
+	grep -ri $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/' --exclude-dir='dist/'
+}
+
+# recursive file grepper
+grepl() {
+	grep -ril $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/' --exclude-dir='dist/'
+}
+
+# download music
+ytdl() {
+	$XDG_CONFIG_HOME/venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
+}
+
+# SLOC
+clocc() {
+	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache,node_modules,.next'
+}
+
+# password generator
+passgen() {
+	LEN=$1
+	if [ -z $LEN ]; then
+		LEN=15
+	fi
+	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
+}
 
 # git branch
-function parse_git_branch() {
+parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 	if [ ! "${BRANCH}" == "" ]
 	then
@@ -114,14 +76,14 @@ function parse_git_branch() {
 }
 
 # git status
-function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+parse_git_dirty() {
+	gs=$(git status 2>&1 | tee)
+	dirty=`echo -n "${gs}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${gs}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${gs}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${gs}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${gs}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${gs}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
 	bits=''
 	if [ "${renamed}" == "0" ]; then
 		bits="± ${bits}"
@@ -148,40 +110,10 @@ function parse_git_dirty {
 	fi
 }
 
-# prompt
-# export PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
-export PS1="\[\e[1;31m\][\[\e[1;36m\]\W\[\e[1;31m\]]\[\e[1;37m\]\`parse_git_branch\`\[\e[00m\] "
+# bun completions
+[ -s "/home/beta/.config/bun/_bun" ] && source "/home/beta/.config/bun/_bun"
 
-# autocomplete
-complete -cf sudo
-complete -cf man
+# rust / cargo
+source "$CARGO_HOME/env"
 
-# recursive grepper
-grepp() {
-	grep -r $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
-}
-
-# recursive file grepper
-grepl() {
-	grep -rl $1 * --exclude-dir='env' --exclude-dir='__pycache__/' --exclude-dir='.venv' --exclude-dir='.ruff_cache/' --exclude-dir='node_modules' --exclude-dir='.pytest_cache/'
-}
-
-# download music
-ytdl() {
-	$XDG_CONFIG_HOME/venv/bin/yt-dlp -x --audio-format=mp3 --audio-quality=0 $1
-}
-
-# SLOC
-clocc() {
-	cloc . --exclude-dir='__pycache__,.venv,.pytest_cache,.ruff_cache,node_modules'
-}
-
-# password generator
-passgen() {
-	LEN=$1
-	if [ -z $LEN ]; then
-		LEN=15
-	fi
-	< /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()' | head -c $LEN; echo
-}
 clear

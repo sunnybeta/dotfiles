@@ -1,0 +1,14 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+space"
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[ui]
+status_indicators = "symbols"

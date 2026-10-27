@@ -1,18 +1,2 @@
-# Xauthority
-xauthority
-
-# Tmux Plugins
-tmux/plugins/
-
-# Neovim Lazy
-lazy-lock.json
-
-# Ncmpcpp
-error.log
-
-# ZSH
-zsh/.zcompdump
-
-# MPD
-mpd/*
-!mpd/mpd.conf
+.config/herdr/*
+!.config/herdr/config.toml
