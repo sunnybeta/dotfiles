@@ -23,10 +23,13 @@
   - [Hyprland](#hyprland)
   - [Waybar](#waybar)
   - [Kitty](#kitty)
+  - [Tmux](#tmux)
   - [Neovim](#neovim)
   - [Fonts](#fonts)
   - [Media](#media)
   - [System & Misc](#system--misc)
+  - [Local Scripts](#local-scripts)
+  - [`extra/` Legacy extras](#legacy-extras-extra)
 - [Keybindings](#%EF%B8%8F-keybindings)
 - [Installation](#-installation)
   - [Prerequisites](#1-prerequisites)
@@ -61,18 +64,23 @@ symlinked into `$HOME` with **GNU Stow**, so the repo can live anywhere and stay
 ├── 📄 .bashrc                     → Interactive shell config
 ├── 📄 .profile                    → Environment variables & PATH
 ├── 📄 .stow-local-ignore          → Files Stow should never link
+├── 📄 install.sh                  → Artix bootstrap / install script
 ├── 📁 .config
 │   ├── 📁 hypr                    → Hyprland WM, lock screen, wallpaper
 │   ├── 📁 waybar                  → Status bar, theme, helper scripts
 │   ├── 📁 kitty                   → Terminal emulator
+│   ├── 📁 tmux                    → Terminal multiplexer
 │   ├── 📁 nvim                    → Neovim (lazy.nvim, LSP, plugins)
 │   ├── 📁 fastfetch               → System-info fetch tool
 │   ├── 📁 btop                    → System monitor
 │   ├── 📁 mpv / mpd / ncmpcpp     → Media playback stack
 │   ├── 📁 pipewire                → Audio server
+│   ├── 📁 venv                    → Pinned Python/yt-dlp dependency list
 │   └── 📁 fonts (see .local)
-└── 📁 .local
-    └── 📁 share/fonts             → Nerd Fonts & Noto typefaces
+├── 📁 .local
+│   ├── 📁 bin                     → sysfetch, rainbow & panes helper scripts
+│   └── 📁 share/fonts             → Nerd Fonts & Noto typefaces
+└── 📁 extra                       → Legacy/optional configs (i3, zsh, distro notes)
 ```
 
 ---
@@ -85,7 +93,10 @@ symlinked into `$HOME` with **GNU Stow**, so the repo can live anywhere and stay
 |------|-------------|
 | `.bashrc` | Interactive shell setup — `vi` editing mode, a two-line **λ prompt** with colors and the git branch, and a pile of quality-of-life aliases (`ls` grouped by dirs, `graph` for a pretty git log, `vfg`/`hypr`/`dot` quick-edit shortcuts, `todo`/`goals` journals). Defines helper functions: `grepp` / `grepl` (project-aware recursive grep that skips `.venv`, `node_modules`, caches), `ytdl` (yt-dlp → mp3), and `clocc` (counts lines of code). |
 | `.profile` | Loaded at login. Exports the **XDG base directories**, sensible defaults (`BROWSER=firefox`, `TERMINAL=kitty`, `EDITOR=nvim`), toolchain homes (Java, Android, Flutter, Go, Cargo, Rustup, Ollama, Jupyter, CUDA…), the assembled `PATH`, and finally sources `.bashrc`. |
-| `.stow-local-ignore` | Tells GNU Stow which files to skip when symlinking (junk like `README.md`, git metadata, editor droppings) so they never leak into `$HOME`. |
+| `.stow-local-ignore` | Tells GNU Stow which files to skip when symlinking (`extra/`, `README.md`, `LICENSE`, `install.sh`, git metadata) so they never leak into `$HOME`. |
+| `install.sh` | Artix bootstrap script — partitions/mounts the drive, runs `basestrap`, installs the full package set (hyprland, kitty, waybar, mpd stack, stow, …), creates the user, clones & stows the dotfiles, and sets up sudoers. Kept for reference on fresh installs. |
+| `.gitignore` | Excludes `herdr` runtime state (logs, session snapshots, locks) while keeping `herdr/config.toml` versioned. |
+| `LICENSE` | MIT license. |
 
 ### Hyprland
 
@@ -113,6 +124,12 @@ symlinked into `$HOME` with **GNU Stow**, so the repo can live anywhere and stay
 | `kitty/kitty.conf` | Terminal config — currently running the **Undefined Medium** Nerd Font (with several others commented in for easy switching), plus window, padding and behaviour tuning. |
 | `kitty/1159.conf` | Alternate colorscheme/profile ("1159"). |
 | `kitty/icecream.conf` | Alternate colorscheme/profile ("icecream"). |
+
+### Tmux
+
+| File | Description |
+|------|-------------|
+| `tmux/tmux.conf` | Multiplexer config — true-color terminal overrides, `C-Space` as leader, 1-based window/pane numbering with renumbering, splits that open in the current directory, `vi` mode keys, and a TPM plugin set (sensible, yank, vim-tmux-navigator) with the icecream theme. TPM itself is installed with `git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins`. |
 
 ### Neovim
 
@@ -159,6 +176,7 @@ All fonts live under `.local/share/fonts/` and are picked up by fontconfig autom
 | `fonts/monofur/` | **Monofur Nerd Font**. |
 | `fonts/noto_sans_jp/` | **Noto Sans JP** — Japanese glyphs (also used by the Waybar workspaces). |
 | `fonts/noto_sans_devanagari/` | **Noto Sans Devanagari**. |
+| `fonts/noto_color_emoji/` | **Noto Color Emoji** — full-color emoji support. |
 
 ### Media
 
@@ -176,7 +194,36 @@ All fonts live under `.local/share/fonts/` and are picked up by fontconfig autom
 | `fastfetch/config.jsonc` | Catnap-inspired fetch display — bordered, colored key/value system summary. |
 | `btop/btop.conf` | TUI system monitor theme & settings. |
 | `pipewire/pipewire.conf` | PipeWire audio server tweaks. |
-| `herdr/config.toml` | [herdr](https://github.com/) client config. (`session-snapshots/`, logs and lock files in this folder are **runtime state**, not config — don't version them.) |
+| `venv/requirements.txt` | Pinned Python packages for the `~/.venv` referenced in `.profile` — includes `yt-dlp`, which backs the `.bashrc` `ytdl` alias. |
+| `herdr/config.toml` | herdr client config. (`session-snapshots/`, logs and lock files in this folder are **runtime state**, ignored via `.gitignore` — don't version them.) |
+
+### Local Scripts
+
+Executable helpers stowed into `~/.local/bin/` (which `.profile` adds to `PATH`):
+
+| File | Description |
+|------|-------------|
+| `bin/sysfetch.sh` | Custom system-info fetch script with colored, center-padded output (based on u/x_ero's sysinfo script). |
+| `bin/rainbow.sh` | Prints every foreground/background ANSI color pair — handy for checking terminal color support. |
+| `bin/panes.sh` | ANSI escape / pane-style demo script. |
+
+### Legacy extras (`extra/`)
+
+An archive of the older **i3-era** setup plus distro-specific install material. It's listed in `.stow-local-ignore`, so Stow never links it — keep it around for reference or copypasta, not for daily use.
+
+| Item | Description |
+|------|-------------|
+| `extra/i3/` | Legacy **i3** window-manager config. |
+| `extra/i3blocks/` | i3 status bar config & a large collection of community blocklet scripts (volume, mic control, colorpicker, weather, VPN, backlight…), each with its own README. |
+| `extra/dunst/`, `extra/picom/` | Notification-daemon and compositor configs from the X11 days. |
+| `extra/x11/` | `xresources` and `xinitrc`. |
+| `extra/git/` | Global `gitconfig`. |
+| `extra/zsh/` | Previous `.zshrc` / `.zprofile` shell setup. |
+| `extra/bin/` | Original copies of `sysfetch.sh`, `rainbow.sh`, `panes.sh` (now also stowed under `.local/bin/`). |
+| `extra/alsa/`, `extra/autologin.conf` | ALSA mixer state snapshot and tty autologin config. |
+| `extra/paclibs`, `extra/dnflibs`, `extra/fedora` | Pacman/dnf package lists used by the install scripts. |
+| `extra/install.sh`, `extra/Makefile` | Older Arch-based installer and Makefile-driven setup. |
+| `extra/INSTALL.md`, `extra/UBUNTU.md` | Install notes (general + Ubuntu specifics). |
 
 ---
 
@@ -187,7 +234,7 @@ The `mainMod` is `SUPER` (the Windows/Command key). Full list lives in `hypr/hyp
 | Keys | Action |
 |------|--------|
 | `SUPER + Return` | Open terminal (kitty) |
-| `SUPER + Q` / `SUPER + W` | Firefox (default / `work` profile) |
+| `SUPER + Q` | Firefox |
 | `SUPER + E` | File manager (ranger) |
 | `SUPER + C` | Close window |
 | `SUPER + F` | Fullscreen |
@@ -324,6 +371,10 @@ Your real files remain untouched in `~/.dots` — safe to delete, move, or re-st
 > 💡 **Pro tip:** if you don't want *everything* stowed, just omit that package,
 > e.g. skip `stow .local` on machines where you don't need the bundled fonts.
 
+> 🗄️ `extra/`, `install.sh`, `README.md`, `LICENSE` and git metadata are excluded via
+> `.stow-local-ignore` — `stow .` or `stow .config .local .bashrc .profile` will only
+> ever link real config files.
+
 ---
 
 ## 🧰 Post-Install Steps
@@ -336,12 +387,19 @@ Your real files remain untouched in `~/.dots` — safe to delete, move, or re-st
 3. **Neovim** — open `nvim` once; lazy.nvim will install every pinned plugin from `lazy-lock.json`.
 4. **Hyprland** — launch it (or reload with `SUPER + SHIFT + R` if already inside).
 5. **MPD** — `systemctl --user enable --now mpd` (music library paths are set in `mpd/mpd.conf`).
+6. **Tmux** — clone TPM (`git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins`), then press `prefix + I` inside tmux to install the plugins.
+7. **Python venv** — recreate the venv from the pinned list when needed:
+   ```bash
+   python -m venv ~/.venv && ~/.venv/bin/pip install -r ~/.dots/.config/venv/requirements.txt
+   ```
+8. **Fresh Artix install** — `install.sh` automates the full bootstrap (partitioning, base install, packages, user, stow). Read it first; it's machine-specific.
 
 ---
 
 ## 🙏 Credits
 
 - [Hyprland](https://hypr.land/) · [Waybar](https://github.com/Alexays/Waybar) · [Kitty](https://sw.kovidgoyal.net/kitty/) · [Neovim](https://neovim.io/) + [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [Tmux](https://github.com/tmux/tmux) + [TPM](https://github.com/tmux-plugins/tpm) · [icecream tmux theme](https://github.com/icecreamtheme/tmux)
 - [GNU Stow](https://www.gnu.org/software/stow/) for the elegant dotfile management
 - [Nerd Fonts](https://www.nerdfonts.com/) for the patched typefaces
 - [fastfetch catnap theme](https://github.com/iinsertNameHere/catnap) by iinsertNameHere
