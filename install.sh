@@ -47,7 +47,7 @@ Include = /etc/pacman.d/mirrorlist-arch
 " >> /etc/pacman.conf
  
 #--- packages ---#
-pacman -S amd-ucode bluez-utils brightnessctl btop docker-openrc fastfetch feh figlet firefox hyprshot gimp git glow grub hyprland hyprlock hyprpaper kitty mpc mpd mpv ncmpcpp networkmanager networkmanager-openrc ntfs-3g nvidia-settings openssh-openrc pipewire-openrc rtkit steam stow tailscale-openrc ufw unzip waybar wl-clipboard yazi tree grub dkms less cmake pipewire-pulse man
+pacman -S amd-ucode bluez-utils brightnessctl btop docker-openrc fastfetch feh figlet firefox hyprshot gimp git glow grub hyprland hyprlock hyprpaper kitty mpc mpd mpv ncmpcpp networkmanager networkmanager-openrc ntfs-3g nvidia-settings openssh-openrc pipewire-openrc rtkit steam stow tailscale-openrc ufw unzip waybar wl-clipboard yazi tree grub dkms less cmake pipewire-pulse man lm_sensors
 
 #--- gpu ---#
 pacman -S libva-utils libva-nvidia-driver nvidia-open-dkms mesa-utils nvidia-settings nvidia-utils lib32-mesa lib32-nvidia-utils lib32-vulkan-radeon libva-mesa-driver lib32-vulkan-icd-loader libva-intel-driver libva-utils

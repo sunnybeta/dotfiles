@@ -5,6 +5,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 
 hl.monitor({
+	-- output   = "eDP-1",
 	output   = "DP-1",
 	mode     = "1920x1200@120",
 	position = "0x0",
@@ -20,6 +21,7 @@ hl.monitor({
 
 -- Bind workspaces to monitors.
 -- See https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
+-- hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })
 
@@ -269,6 +271,7 @@ for i = 1, 10 do
 end
 
 -- Screenshot
+-- hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -m eDP-1"))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -m DP-1"))
 
 -- Example special workspace (scratchpad)
