@@ -266,7 +266,7 @@ for i = 1, 10 do
 end
 
 -- Screenshot
-hl.bind("PRINT", hl.dsp.exec_cmd("flameshot full"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -m eDP-1"))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))

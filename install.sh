@@ -26,12 +26,12 @@ swapon /dev/'$prefix'2
 mkfs.ext4 /dev/'$prefix'3
 mkfs.ext4 /dev/'$prefix'4
 
-#--- fstab ---#
-fstabgen -U /mnt > /mnt/etc/fstab
-
 #--- basestrap ---#
 
-basestrap /mnt base base-devel linux linux-firmware artix-archlinux-support 
+basestrap /mnt base base-devel linux linux-firmware artix-archlinux-support neovim elogind-openrc
+
+#--- fstab ---#
+fstabgen -U /mnt > /mnt/etc/fstab
 
 #--- chroooooooooooooooot ---"
 artix-chroot /mnt
@@ -47,13 +47,23 @@ Include = /etc/pacman.d/mirrorlist-arch
 " >> /etc/pacman.conf
  
 #--- packages ---#
-pacman -S amd-ucode base bluez-utils brightnessctl btop docker-openrc fastfetch feh figlet firefox gimp git glow grub hyprland hyprlock hyprpaper kitty mpc mpd mpv ncmpcpp neovim networkmanager networkmanager-openrc ntfs-3g nvidia-580xx nvidia-settings openssh-openrc pipewire-openrc steam stow tailscale-openrc ufw unzip waybar yazi
+pacman -S amd-ucode bluez-utils brightnessctl btop docker-openrc fastfetch feh figlet firefox hyprshot gimp git glow grub hyprland hyprlock hyprpaper kitty mpc mpd mpv ncmpcpp networkmanager networkmanager-openrc ntfs-3g nvidia-settings openssh-openrc pipewire-openrc rtkit steam stow tailscale-openrc ufw unzip waybar wl-clipboard yazi tree grub
+
+#--- gpu ---#
+pacman -S libva-utils libva-nvidia-driver nvidia-open-dkms mesa-utils nvidia-settings nvidia-utils lib32-mesa lib32-nvidia-utils lib32-vulkan-radeon libva-mesa-driver lib32-vulkan-icd-loader libva-intel-driver libva-utils
+
+#--- completion ---#
+sudo pacman -S --needed --noconfirm linux-headers
+# sudo dkms autoinstall # optional
+sudo mkinitcpio -P
+sudo dkms status
+
 #--- root ---$
 echo "Enter Root Password"
 passwd
 
 #--- time ---#
-ln -sf /usr/share/timezone/Asia/Dubai /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Dubai /etc/localtime
  
 #--- host ---#
 echo "luci4" > /etc/hostname

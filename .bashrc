@@ -116,4 +116,5 @@ parse_git_dirty() {
 # rust / cargo
 source "$CARGO_HOME/env"
 
+
 clear

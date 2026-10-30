@@ -1,2 +1,4 @@
 .config/herdr/*
 !.config/herdr/config.toml
+.uuid
+error.log
