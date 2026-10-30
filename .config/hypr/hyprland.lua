@@ -5,7 +5,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 
 hl.monitor({
-	output   = "eDP-1",
+	output   = "DP-1",
 	mode     = "1920x1200@120",
 	position = "0x0",
 	scale    = 1,
@@ -20,7 +20,7 @@ hl.monitor({
 
 -- Bind workspaces to monitors.
 -- See https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
+hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })
 
 for i = 3, 10 do
@@ -36,6 +36,7 @@ local lock        = "hyprlock"
 local terminal    = "kitty -o use_system_wcwidth=no"
 local fileManager = "ranger"
 local browser     = "firefox"
+-- local monitor     = "hyprctl monitors | head -n 1 | cut -d' ' -f2"
 -- local menu     = "wofi --show drun"
 
 
@@ -48,6 +49,8 @@ hl.on("hyprland.start", function()
 	hl.dispatch(hl.dsp.focus({ workspace = 1 }))
 	hl.exec_cmd(lock)
 	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("pipewire")
+	hl.exec_cmd("pipewire-pulse")
 	hl.exec_cmd("waybar")
 end)
 
@@ -266,7 +269,7 @@ for i = 1, 10 do
 end
 
 -- Screenshot
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -m eDP-1"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -m DP-1"))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))

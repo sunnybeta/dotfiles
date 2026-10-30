@@ -2,3 +2,6 @@
 !.config/herdr/config.toml
 .uuid
 error.log
+.local/share/hyprland
+.local/share/nvim
+.config/git
