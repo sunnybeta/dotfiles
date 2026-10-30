@@ -6,3 +6,4 @@ install.sh
 home.png
 sys.png
 .gitignore
+.config/git

@@ -2,11 +2,9 @@
 	defaultBranch = master
 [user]
 	name = Sunny
-	email = example@example.com
+	email = ""
 [core]
 	editor = nvim
 	whitespace=4
 [color]
 	ui = true
-[format]
-	pretty = oneline
